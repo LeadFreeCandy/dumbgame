@@ -3,8 +3,8 @@
 [ext_resource path="res://Player.gd" type="Script" id=1]
 
 [sub_resource type="CapsuleShape" id=1]
-radius = 0.5
-height = 1.5
+radius = 0.2
+height = 0.8
 
 [node name="Player" type="KinematicBody"]
 script = ExtResource( 1 )
@@ -13,5 +13,8 @@ script = ExtResource( 1 )
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
 shape = SubResource( 1 )
 
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+[node name="Pivot" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.406236, 0 )
+
+[node name="Camera" type="Camera" parent="Pivot"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
