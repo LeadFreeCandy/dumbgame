@@ -16,6 +16,7 @@ var snap : Vector3 = Vector3()
 
 onready var pivot = $Pivot
 onready var aimcast = $Pivot/Camera/aimcast
+onready var bang = $Pivot/Deagle/Bang
 
 func _ready():
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -74,6 +75,7 @@ func get_input_direction() -> Vector3:
 
 
 func shoot():
+	bang.play()
 	if aimcast.is_colliding():
 		var target = aimcast.get_collider()
 		if target.is_in_group("Enemy"):

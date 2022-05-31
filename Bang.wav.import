@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Bang.wav-826a988c8e7de83f3d8af5281bf1ff78.sample"
+
+[deps]
+
+source_file="res://Bang.wav"
+dest_files=[ "res://.import/Bang.wav-826a988c8e7de83f3d8af5281bf1ff78.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
