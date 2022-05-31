@@ -142,7 +142,7 @@ material/0 = null
 shape = SubResource( 5 )
 
 [node name="Ramp2" type="MeshInstance" parent="Enviroment/Ramp"]
-transform = Transform( 14.2535, 0, 0, 0, 5.82193, 0, 0, 0, 1, 4.45909, 1.56283, 9.0856 )
+transform = Transform( 14.2535, 0, 0, 0, 5.82193, 0, 0, 0, 1, 4.45909, 2.07434, 9.0856 )
 mesh = SubResource( 4 )
 skeleton = NodePath("../../..")
 material/0 = null

@@ -106,5 +106,6 @@ func _on_Hand_off_ads():
 	crosshair.visible = true
 
 
+
 func _on_Hand_on_ads():
 	crosshair.visible = false
