@@ -16,7 +16,7 @@ var snap : Vector3 = Vector3()
 
 onready var pivot = $Pivot
 onready var aimcast = $Pivot/Camera/aimcast
-onready var bang = $Pivot/Deagle/Bang
+onready var bang = $Pivot/Bang
 
 func _ready():
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
