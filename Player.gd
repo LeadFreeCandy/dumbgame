@@ -50,4 +50,10 @@ func get_input_direction() -> Vector3:
 		var x : float = (
 			Input.get_action_strength("left") - Input.get_action_strength("right")
 		)
-		return transform.basis.xform(Vector3(x, 0, z)).normalized()
+		
+		var vector = transform.basis.xform(Vector3(x, 0, z)).normalized()
+		
+		if Input.is_action_pressed("sprint"):
+			vector *= 2
+		
+		return vector
