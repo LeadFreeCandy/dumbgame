@@ -82,7 +82,12 @@ func shoot():
 		var impact_pos = aimcast.get_collision_point()
 		
 		var bullet_impact = impact.instance()
-		bullet_impact.transform.translate(impact_pos)
+#		get_node("/root/MainLevel").add_child(bullet_impact)
+		target.add_child(bullet_impact)
+		
+#		bullet_impact.translation = impact_pos
+		bullet_impact.global_transform = bullet_impact.transform.translated(impact_pos)
+		print(bullet_impact.translation)
 		
 		print(impact_pos)
 		if target.is_in_group("Enemy"):
