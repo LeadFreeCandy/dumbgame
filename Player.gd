@@ -18,18 +18,25 @@ onready var pivot = $Pivot
 onready var aimcast = $Pivot/Camera/aimcast
 
 func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	pass
 
 func _process(delta):
 	if Input.is_action_just_pressed("shoot"):
 		shoot()
 
 func _input(event):
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		rotate_y(deg2rad(-1*event.relative.x)*lookSensitivity)
 		pivot.rotate_x(deg2rad(event.relative.y)*lookSensitivity)
 		pivot.rotation.x = clamp(pivot.rotation.x, deg2rad(minLookAngle), deg2rad(maxLookAngle))
-
+		
+	if event.is_action_pressed("shoot"):
+		if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	if event.is_action_pressed("escape"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		
 func _physics_process(delta):
 	input_move = get_input_direction()*moveSpeed
 	
