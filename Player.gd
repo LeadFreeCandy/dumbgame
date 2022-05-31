@@ -1,5 +1,7 @@
 extends KinematicBody
 
+var damage : int = 5
+
 var moveSpeed : float = 3.0
 var jumpForce : float = 3.0
 var gravity : float = 10
@@ -12,10 +14,15 @@ var input_move : Vector3 = Vector3()
 var gravity_local : Vector3 = Vector3()
 var snap : Vector3 = Vector3()
 
-onready var pivot = get_node("Pivot")
+onready var pivot = $Pivot
+onready var aimcast = $Pivot/Camera/aimcast
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func _process(delta):
+	if Input.is_action_just_pressed("shoot"):
+		shoot()
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -51,3 +58,10 @@ func get_input_direction() -> Vector3:
 			Input.get_action_strength("left") - Input.get_action_strength("right")
 		)
 		return transform.basis.xform(Vector3(x, 0, z)).normalized()
+
+func shoot():
+	if aimcast.is_colliding():
+		var target = aimcast.get_collider()
+		if target.is_in_group("Enemy"):
+			print("hit enemy")
+			target.health -= damage
