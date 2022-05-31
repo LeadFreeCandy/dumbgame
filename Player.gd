@@ -84,12 +84,14 @@ func shoot():
 		
 		var bullet_impact = impact.instance()
 
+
 #		get_node("/root/MainLevel").add_child(bullet_impact)
 		target.add_child(bullet_impact)
 		
 #		bullet_impact.translation = impact_pos
 		bullet_impact.global_transform = bullet_impact.transform.translated(impact_pos)
 		print(bullet_impact.translation)
+
 
 		
 		print(impact_pos)
