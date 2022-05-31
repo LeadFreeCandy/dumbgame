@@ -17,6 +17,7 @@ var snap : Vector3 = Vector3()
 onready var pivot = $Pivot
 onready var aimcast = $Pivot/Camera/aimcast
 onready var bang = $Pivot/Bang
+onready var crosshair = $Pivot/Camera/CrossHair
 onready var impact = preload("res://BulletImpact.tscn")
 
 func _ready():
@@ -82,7 +83,7 @@ func shoot():
 		var impact_pos = aimcast.get_collision_point()
 		
 		var bullet_impact = impact.instance()
-		bullet_impact.transform.translate(impact_pos)
+		bullet_impact.translation = impact_pos
 		
 		print(impact_pos)
 		if target.is_in_group("Enemy"):
@@ -90,3 +91,11 @@ func shoot():
 			target.health -= damage
 
 
+
+
+func _on_Hand_off_ads():
+	crosshair.visible = true
+
+
+func _on_Hand_on_ads():
+	crosshair.visible = false
