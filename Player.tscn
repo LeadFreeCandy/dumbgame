@@ -36,6 +36,7 @@ transform = Transform( -0.75, 0, -1.13247e-07, 0, 0.75, 0, 1.13247e-07, 0, -0.75
 
 [node name="Camera" type="Camera" parent="Pivot"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
+current = true
 
 [node name="aimcast" type="RayCast" parent="Pivot/Camera"]
 enabled = true
