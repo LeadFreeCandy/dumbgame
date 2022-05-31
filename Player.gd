@@ -72,6 +72,9 @@ func get_input_direction() -> Vector3:
 		
 		if Input.is_action_pressed("sprint"):
 			vector *= 2
+		if Input.is_action_pressed("ads"):
+			vector /= 2
+		
 		
 		return vector
 
