@@ -92,7 +92,7 @@ surfaces/0 = {
 "vertex_count": 74
 }
 
-[node name="scene" type="Spatial"]
+[node name="Deagle" type="Spatial"]
 
 [node name="Sketchfab_model" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 2.22045e-16, 1, 0, -1, 2.22045e-16, 0, 0, 0 )
