@@ -1,0 +1,11 @@
+Model Information:
+* title:	Pixel Desert Eagle (Free)
+* source:	https://sketchfab.com/3d-models/pixel-desert-eagle-free-70c1b3cdb08d4d428a6b0868236eb55a
+* author:	FireWarden (https://sketchfab.com/FireWarden)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Pixel Desert Eagle (Free)" (https://sketchfab.com/3d-models/pixel-desert-eagle-free-70c1b3cdb08d4d428a6b0868236eb55a) by FireWarden (https://sketchfab.com/FireWarden) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
