@@ -1,11 +1,8 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Enviroment/Environment_1.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Enviroment/Mounting_1.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Enviroment/Mounting_2.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Enviroment/Terrain_1.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Enviroment/Terrain_2.tscn" type="PackedScene" id=6]
+[ext_resource path="res://World.tscn" type="PackedScene" id=2]
+[ext_resource path="res://terrain.tres" type="Material" id=6]
 [ext_resource path="res://Enemy.tscn" type="PackedScene" id=7]
 
 [sub_resource type="SpatialMaterial" id=3]
@@ -30,102 +27,22 @@ data = PoolVector3Array( 0, 1, 1, 1, -1, 1, -1, -1, 1, 0, 1, -1, -1, -1, -1, 1, 
 [node name="MainLevel" type="Node"]
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( 1, 0, 0, 0, -0.131201, 0.991356, 0, -0.991356, -0.131201, 0, 19.826, 10.6518 )
+transform = Transform( -0.892196, 0.36305, 0.268665, -0.188269, -0.839663, 0.509431, 0.410537, 0.403931, 0.817496, 0, 19.826, 10.6518 )
+light_energy = 0.485
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.18158, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5143, 0 )
 
 [node name="Enviroment" type="Node" parent="."]
-
-[node name="Environment_1" parent="Enviroment" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.35859, -0.27254, -24.0024 )
-
-[node name="Environment_3" parent="Enviroment" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.4951, -0.27254, -24.0024 )
-
-[node name="Environment_4" parent="Enviroment/Environment_3" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -18.6345 )
-
-[node name="Mounting_2" parent="Enviroment/Environment_3" instance=ExtResource( 4 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.83193, -0.479804, -8.8247 )
-
-[node name="Environment_2" parent="Enviroment" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8158, -0.27254, -24.0024 )
-
-[node name="Mounting_1" parent="Enviroment/Environment_2" instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.28101, 0.527446, 1.52756 )
-
-[node name="Terrain_1" parent="Enviroment" instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.21359, -0.561084, -43.0928 )
-
-[node name="Terrain_2" parent="Enviroment" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17.6185, -0.547901, -43.7692 )
 
 [node name="Floor" type="MeshInstance" parent="Enviroment"]
 mesh = SubResource( 1 )
 skeleton = NodePath("../..")
-material/0 = null
+material/0 = ExtResource( 6 )
 
 [node name="StaticBody" type="StaticBody" parent="Enviroment/Floor"]
 
 [node name="CollisionShape" type="CollisionShape" parent="Enviroment/Floor/StaticBody"]
-shape = SubResource( 2 )
-
-[node name="Walls" type="Node" parent="Enviroment"]
-
-[node name="MeshInstance2" type="MeshInstance" parent="Enviroment/Walls"]
-transform = Transform( 0.0438909, 0, 0, 0, 18.6449, 0, 0, 0, 1, 14.3856, 8.97015, 0 )
-mesh = SubResource( 1 )
-skeleton = NodePath("../../..")
-material/0 = null
-
-[node name="StaticBody" type="StaticBody" parent="Enviroment/Walls/MeshInstance2"]
-
-[node name="CollisionShape" type="CollisionShape" parent="Enviroment/Walls/MeshInstance2/StaticBody"]
-shape = SubResource( 2 )
-
-[node name="MeshInstance5" type="MeshInstance" parent="Enviroment/Walls"]
-transform = Transform( -1.74576e-10, 0, 0.0909946, 0, -2.59519, 0, -0.0101457, 0, -1.01042e-08, 12.4483, 1.53055, 6.29635 )
-mesh = SubResource( 1 )
-skeleton = NodePath("../../..")
-material/0 = null
-
-[node name="StaticBody" type="StaticBody" parent="Enviroment/Walls/MeshInstance5"]
-
-[node name="CollisionShape" type="CollisionShape" parent="Enviroment/Walls/MeshInstance5/StaticBody"]
-shape = SubResource( 2 )
-
-[node name="MeshInstance6" type="MeshInstance" parent="Enviroment/Walls"]
-transform = Transform( -1.74576e-10, 0, 0.0909946, 0, -2.59519, 0, -0.0101457, 0, -1.01042e-08, 12.4483, 1.53055, -4.54934 )
-mesh = SubResource( 1 )
-skeleton = NodePath("../../..")
-material/0 = null
-
-[node name="StaticBody" type="StaticBody" parent="Enviroment/Walls/MeshInstance6"]
-
-[node name="CollisionShape" type="CollisionShape" parent="Enviroment/Walls/MeshInstance6/StaticBody"]
-shape = SubResource( 2 )
-
-[node name="MeshInstance3" type="MeshInstance" parent="Enviroment/Walls"]
-transform = Transform( 0.0438909, 0, 0, 0, 18.6449, 0, 0, 0, 1, -14.3154, 8.97015, 0 )
-mesh = SubResource( 1 )
-skeleton = NodePath("../../..")
-material/0 = null
-
-[node name="StaticBody" type="StaticBody" parent="Enviroment/Walls/MeshInstance3"]
-
-[node name="CollisionShape" type="CollisionShape" parent="Enviroment/Walls/MeshInstance3/StaticBody"]
-shape = SubResource( 2 )
-
-[node name="MeshInstance4" type="MeshInstance" parent="Enviroment/Walls"]
-transform = Transform( -1.91853e-09, 0, 1, 0, 18.6449, 0, -0.0438909, 0, -4.37114e-08, 0.404563, 8.51761, 15.2539 )
-mesh = SubResource( 1 )
-skeleton = NodePath("../../..")
-material/0 = null
-
-[node name="StaticBody" type="StaticBody" parent="Enviroment/Walls/MeshInstance4"]
-
-[node name="CollisionShape" type="CollisionShape" parent="Enviroment/Walls/MeshInstance4/StaticBody"]
 shape = SubResource( 2 )
 
 [node name="Ramp" type="Node" parent="Enviroment"]
@@ -198,3 +115,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.767, 1.2, 4.88103 )
 
 [node name="Enemy15" parent="Enemies" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.767, 1.2, 5.52839 )
+
+[node name="World" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -167.105, 0 )
