@@ -18,6 +18,9 @@ onready var pivot = $Pivot
 onready var aimcast = $Pivot/Camera/aimcast
 onready var bang = $Pivot/Bang
 
+onready var impact = preload("res://BulletImpact.tscn")
+
+
 func _ready():
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	pass
@@ -75,9 +78,15 @@ func get_input_direction() -> Vector3:
 
 
 func shoot():
-	bang.play()
+	#bang.play()
 	if aimcast.is_colliding():
 		var target = aimcast.get_collider()
+		var impact_pos = aimcast.get_collision_point()
+		
+		var bullet_impact = impact.instance()
+		bullet_impact.transform.translate(impact_pos)
+		
+		print(impact_pos)
 		if target.is_in_group("Enemy"):
 			print("hit enemy")
 			target.health -= damage

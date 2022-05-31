@@ -41,7 +41,7 @@ transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0
 enabled = true
 cast_to = Vector3( 0, 0, -1000 )
 
-[node name="TextureRect" type="TextureRect" parent="Pivot/Camera"]
+[node name="CrossHair" type="TextureRect" parent="Pivot/Camera"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -51,3 +51,6 @@ margin_top = -16.0
 margin_right = 32.0
 margin_bottom = 32.0
 texture = ExtResource( 3 )
+
+[connection signal="off_ads" from="Pivot/Hand" to="." method="_on_Hand_off_ads"]
+[connection signal="on_ads" from="Pivot/Hand" to="." method="_on_Hand_on_ads"]
