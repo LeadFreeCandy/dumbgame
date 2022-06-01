@@ -1,6 +1,6 @@
 extends Spatial
 
-const chunk_size = 64 * 2
+const chunk_size = 32
 const chunk_amount = 4
 
 

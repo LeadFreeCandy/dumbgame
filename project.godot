@@ -30,6 +30,12 @@ config/name="dumbgame"
 run/main_scene="res://MainLevel.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/width=2560
+window/size/height=1440
+window/stretch/aspect="keep"
+
 [gdnative]
 
 singletons=[ "res://addons/godot-git-plugin/git_api.gdnlib" ]

@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://Deagle.tscn" type="PackedScene" id=2]
 [ext_resource path="res://crosshair.png" type="Texture" id=3]
 [ext_resource path="res://Bang.wav" type="AudioStream" id=4]
 [ext_resource path="res://Hand.gd" type="Script" id=5]
+[ext_resource path="res://default_env.tres" type="Environment" id=6]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.2
@@ -36,6 +37,7 @@ transform = Transform( -0.75, 0, -1.13247e-07, 0, 0.75, 0, 1.13247e-07, 0, -0.75
 
 [node name="Camera" type="Camera" parent="Pivot"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
+environment = ExtResource( 6 )
 far = 8192.0
 
 [node name="aimcast" type="RayCast" parent="Pivot/Camera"]
@@ -52,9 +54,6 @@ margin_top = -16.0
 margin_right = 32.0
 margin_bottom = 32.0
 texture = ExtResource( 3 )
-
-[node name="SpotLight" type="SpotLight" parent="Pivot/Camera"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.213979, 0 )
 
 [connection signal="off_ads" from="Pivot/Hand" to="." method="_on_Hand_off_ads"]
 [connection signal="on_ads" from="Pivot/Hand" to="." method="_on_Hand_on_ads"]

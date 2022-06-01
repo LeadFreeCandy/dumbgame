@@ -17,7 +17,7 @@ uniform vec3 uv2_scale;
 uniform vec3 uv2_offset;
 
 uniform vec4 sand_color : hint_color = vec4(.9, 0.93, 0.62, 1.0);
-uniform vec4 grass_color : hint_color = vec4(.56, 1.0, 0.53, 1.0);
+uniform vec4 grass_color : hint_color = vec4(.25, 0.5, 0.25, 1.0);
 
 varying flat vec3 out_color;
 
@@ -62,4 +62,4 @@ shader_param/uv1_offset = Vector3( 0, 0, 0 )
 shader_param/uv2_scale = Vector3( 1, 1, 1 )
 shader_param/uv2_offset = Vector3( 0, 0, 0 )
 shader_param/sand_color = Color( 0.9, 0.93, 0.62, 1 )
-shader_param/grass_color = Color( 0.56, 1, 0.53, 1 )
+shader_param/grass_color = Color( 0.376471, 0.541176, 0.196078, 1 )

@@ -18,7 +18,7 @@ onready var pivot = $Pivot
 onready var aimcast = $Pivot/Camera/aimcast
 onready var bang = $Pivot/Bang
 onready var crosshair = $Pivot/Camera/CrossHair
-onready var impact = preload("res://BulletImpact.tscn")
+onready var impact = preload("res://world_assets/BulletImpact.tscn")
 
 func _ready():
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -71,7 +71,7 @@ func get_input_direction() -> Vector3:
 		var vector = transform.basis.xform(Vector3(x, 0, z)).normalized()
 		
 		if Input.is_action_pressed("sprint"):
-			vector *= 200
+			vector *= 3
 		if Input.is_action_pressed("ads"):
 			vector /= 2
 		

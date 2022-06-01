@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/1nimetre.glb-5e64561bba87830cd585be9ddec41efc.scn"
+path="res://.import/rock.dae-728332d1d1da0e843f6be2e1b5ddd8fb.scn"
 
 [deps]
 
-source_file="res://1nimetre.glb"
-dest_files=[ "res://.import/1nimetre.glb-5e64561bba87830cd585be9ddec41efc.scn" ]
+source_file="res://world_assets/rock.dae"
+dest_files=[ "res://.import/rock.dae-728332d1d1da0e843f6be2e1b5ddd8fb.scn" ]
 
 [params]
 
