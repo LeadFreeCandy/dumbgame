@@ -26,13 +26,12 @@ stream = ExtResource( 4 )
 max_db = -1.0
 
 [node name="Hand" type="Spatial" parent="Pivot"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.195, -0.185, 0.195 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.167, -0.085, 0.534 )
 script = ExtResource( 5 )
-default_pos = Vector3( -0.195, -0.185, 0.195 )
-ads_pos = Vector3( 0, -0.14, 0.141 )
 
 [node name="Deagle" parent="Pivot/Hand" instance=ExtResource( 2 )]
 transform = Transform( -0.75, 0, -1.13247e-07, 0, 0.75, 0, 1.13247e-07, 0, -0.75, 0, 0, 0 )
+visible = false
 
 [node name="Camera" type="Camera" parent="Pivot"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )

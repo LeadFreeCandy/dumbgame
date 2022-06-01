@@ -14,19 +14,22 @@ var input_move : Vector3 = Vector3()
 var gravity_local : Vector3 = Vector3()
 var snap : Vector3 = Vector3()
 
+var gun
+
 onready var pivot = $Pivot
 onready var aimcast = $Pivot/Camera/aimcast
 onready var bang = $Pivot/Bang
 onready var crosshair = $Pivot/Camera/CrossHair
-onready var impact = preload("res://BulletImpact.tscn")
+onready var gunScene = preload("res://Rifle.tscn")
 
 func _ready():
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	pass
+	gun = gunScene.instance()
+	$Pivot/Hand.add_child(gun)
 
 func _process(delta):
 	if Input.is_action_just_pressed("shoot"):
-		shoot()
+		gun.shoot(aimcast)
 
 func _input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
@@ -74,33 +77,6 @@ func get_input_direction() -> Vector3:
 			vector *= 2
 		
 		return vector
-
-
-func shoot():
-	#bang.play()
-	if aimcast.is_colliding():
-		var target = aimcast.get_collider()
-		var impact_pos = aimcast.get_collision_point()
-		
-		var bullet_impact = impact.instance()
-
-#		get_node("/root/MainLevel").add_child(bullet_impact)
-		target.add_child(bullet_impact)
-		
-#		bullet_impact.translation = impact_pos
-		bullet_impact.global_transform = bullet_impact.transform.translated(impact_pos)
-		print(bullet_impact.translation)
-
-
-
-		
-		print(impact_pos)
-		if target.is_in_group("Enemy"):
-			print("hit enemy")
-			target.health -= damage
-
-
-
 
 func _on_Hand_off_ads():
 	crosshair.visible = true

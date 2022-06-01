@@ -9,13 +9,37 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "Ammo",
+"language": "GDScript",
+"path": "res://AmmoClass.gd"
+}, {
+"base": "Spatial",
+"class": "Body",
+"language": "GDScript",
+"path": "res://Body.gd"
+}, {
 "base": "",
 "class": "GitAPI",
 "language": "NativeScript",
 "path": "res://addons/godot-git-plugin/git_api.gdns"
+}, {
+"base": "Spatial",
+"class": "Grip",
+"language": "GDScript",
+"path": "res://Grip.gd"
+}, {
+"base": "Spatial",
+"class": "Stock",
+"language": "GDScript",
+"path": "res://Stock.gd"
 } ]
 _global_script_class_icons={
-"GitAPI": ""
+"Ammo": "",
+"Body": "",
+"GitAPI": "",
+"Grip": "",
+"Stock": ""
 }
 
 [application]
