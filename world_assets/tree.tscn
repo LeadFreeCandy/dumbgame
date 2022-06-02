@@ -15,6 +15,7 @@ emission_on_uv2 = false
 
 [node name="MeshInstance" type="MeshInstance" parent="." index="0"]
 transform = Transform( 0.075, 6.27401e-06, 3.90524e-06, -6.27473e-06, 0.075, 1.38611e-05, -3.90408e-06, -1.38615e-05, 0.075, 0.0355986, 0.986101, 0.0199217 )
+visible = false
 mesh = SubResource( 1 )
 skeleton = NodePath("OmniLight")
 material/0 = SubResource( 2 )
@@ -22,6 +23,7 @@ material/0 = SubResource( 2 )
 [node name="OmniLight" type="OmniLight" parent="MeshInstance" index="0"]
 transform = Transform( 13.3333, -1.40119e-11, -5.82077e-11, 2.18847e-10, 13.3333, -4.65661e-10, 5.82077e-11, 2.32831e-10, 13.3333, 0, 0, 0 )
 light_color = Color( 1, 0.890196, 0.74902, 1 )
+light_energy = 100.0
 
 [node name="Icosphere" parent="." index="1"]
 transform = Transform( 1, 8.36337e-05, 5.21016e-05, -8.36631e-05, 1, 0.000184806, -5.20544e-05, -0.000184819, 1, 0, 0.5, 0 )

@@ -26,6 +26,7 @@ func add_chunk(x, z):
 	if not thread.is_active():
 		thread.start(self, "load_chunk", [thread, x, z])
 		unready_chunks[key] = 1
+
 		
 func load_chunk(arr):
 	var thread = arr[0]
