@@ -6,7 +6,7 @@ var projectile : bool
 var auto : bool
 
 var projType = [
-	100,
+	50,
 	50,
 	25
 ]

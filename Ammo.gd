@@ -31,7 +31,8 @@ func _on_Ammo_body_entered(body):
 
 
 func _on_Ammo_area_entered(area):
-	if area.is_in_group("Enemy"):
+	print("hit area")
+	if area.get_parent().is_in_group("Enemy"):
 		print("hit enemy")
-		area.health-=damage
+		area.get_parent().health-=damage
 	destroy()

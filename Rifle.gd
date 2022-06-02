@@ -64,4 +64,4 @@ func shoot(aimcast):
 			bullet_impact.global_transform = bullet_impact.transform.translated(impact_pos)
 		
 			if target.is_in_group("Enemy"):
-				target.take_damage(ammo.damage)
+				target.health -= ammo.damage

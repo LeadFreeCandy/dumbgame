@@ -1,4 +1,4 @@
-extends Area
+extends KinematicBody
 
 var health : int = 25
 
