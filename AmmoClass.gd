@@ -13,9 +13,9 @@ var dmgType = [
 ]
 
 var shotType= [
-	[10,25],
-	[10,25],
-	[10,25]
+	[25,25],
+	[25,25],
+	[25,25]
 ]
 
 func _init(type, subtype):

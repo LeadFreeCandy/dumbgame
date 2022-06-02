@@ -46,8 +46,10 @@ func shoot(aimcast):
 	if(body.projectile):
 		var bullet = am.instance()
 		bullet.copy(ammo)
-		get_node("Body/muzzle").add_child(bullet)
-		bullet.apply_impulse(bullet.transform.basis.z, -bullet.transform.basis.z*bullet.shotSpeed)
+		add_child(bullet)
+		bullet.transform = $Body/muzzle.global_transform
+		bullet.velocity = -bullet.transform.basis.z * bullet.shotSpeed
+		
 	else:
 		if aimcast.is_colliding():
 			var target = aimcast.get_collider()
