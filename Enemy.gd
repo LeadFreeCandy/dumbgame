@@ -1,8 +1,7 @@
-extends KinematicBody
+extends Area
 
 var health : int = 25
 
-func take_damage(amount):
-	health -= amount
+func _process(delta):
 	if health <= 0:
 		queue_free()
