@@ -43,6 +43,7 @@ func generate_chunk():
 #	var rng = RandomNumberGenerator.new()
 	
 	for i in range(data_tool.get_vertex_count()):
+
 		var vertex = data_tool.get_vertex(i)
 		vertex.y = noise.get_noise_3d(vertex.x + x, vertex.y, vertex.z + z) * 40
 		
@@ -66,58 +67,58 @@ func generate_chunk():
 	var rng = RandomNumberGenerator.new()
 	rng.seed = hash("Godot")
 	
-	for i in range(num_trees):
-		var tree_x = rng.randf_range(-chunk_size/2, chunk_size/2)
-		var tree_z = rng.randf_range(-chunk_size/2, chunk_size/2)
-#		var tree_z = 0
-		
-		var tree_y = noise.get_noise_3d(tree_x + x, 0, tree_z + z) * 40
-		
-		if tree_y > 0:
-		
-			var tree_inst = tree.instance()
-			add_child(tree_inst)
-			
-			var pos = Transform.IDENTITY
-			pos = pos.translated(Vector3(tree_x, tree_y, tree_z))
-			
-#			tree_inst.transform = Transform.IDENTITY.rotated(Vector3(0.0,1.0, 0.0), .01).translated(Vector3(tree_x, tree_y, tree_z))
-			tree_inst.rotation = Vector3(0.0, rng.randf_range(0.0,10.0), 0.0)
-			tree_inst.translation = Vector3(tree_x, tree_y, tree_z)
-			
-	for i in range(num_grass):
-		var grass_x = rng.randf_range(-chunk_size/2, chunk_size/2)
-		var grass_z = rng.randf_range(-chunk_size/2, chunk_size/2)
-#		var tree_z = 0
-		
-		var grass_y = noise.get_noise_3d(grass_x + x, 0, grass_z + z) * 40
-		
-		if grass_y > 0:
-		
-			var grass_inst = grass.instance()
-			add_child(grass_inst)
-			
-			grass_inst.global_transform = Transform.IDENTITY.translated(Vector3(grass_x, grass_y, grass_z))
-			
-	for i in range(num_grass/2):
-		var grass_x = rng.randf_range(-chunk_size/2, chunk_size/2)
-		var grass_z = rng.randf_range(-chunk_size/2, chunk_size/2)
-#		var tree_z = 0
-		
-		var grass_y = noise.get_noise_3d(grass_x + x, 0, grass_z + z) * 40
-		
-		if grass_y > 0:
-		
-			var grass_inst = rock.instance()
-			add_child(grass_inst)
-			
-			var pos = Transform.IDENTITY
-			pos = pos.translated(Vector3(grass_x, grass_y, grass_z))
-			
-#			tree_inst.transform = Transform.IDENTITY.rotated(Vector3(0.0,1.0, 0.0), .01).translated(Vector3(tree_x, tree_y, tree_z))
-			grass_inst.rotation = Vector3(0, rng.randf_range(0.0,10.0), rng.randf_range(0.0,10.0))
-			grass_inst.translation = Vector3(grass_x, grass_y, grass_z)
+#	for i in range(num_trees):
+#		var tree_x = rng.randf_range(-chunk_size/2, chunk_size/2)
+#		var tree_z = rng.randf_range(-chunk_size/2, chunk_size/2)
+##		var tree_z = 0
+#
+#		var tree_y = noise.get_noise_3d(tree_x + x, 0, tree_z + z) * 40
+#
+#		if tree_y > 0:
+#
+#			var tree_inst = tree.instance()
+#			add_child(tree_inst)
+#
+#			var pos = Transform.IDENTITY
+#			pos = pos.translated(Vector3(tree_x, tree_y, tree_z))
+#
+##			tree_inst.transform = Transform.IDENTITY.rotated(Vector3(0.0,1.0, 0.0), .01).translated(Vector3(tree_x, tree_y, tree_z))
+#			tree_inst.rotation = Vector3(0.0, rng.randf_range(0.0,10.0), 0.0)
+#			tree_inst.translation = Vector3(tree_x, tree_y, tree_z)
+#
+#	for i in range(num_grass):
+#		var grass_x = rng.randf_range(-chunk_size/2, chunk_size/2)
+#		var grass_z = rng.randf_range(-chunk_size/2, chunk_size/2)
+##		var tree_z = 0
+#
+#		var grass_y = noise.get_noise_3d(grass_x + x, 0, grass_z + z) * 40
+#
+#		if grass_y > 0:
+#
+#			var grass_inst = grass.instance()
+#			add_child(grass_inst)
+#
 #			grass_inst.global_transform = Transform.IDENTITY.translated(Vector3(grass_x, grass_y, grass_z))
+#
+#	for i in range(num_grass/2):
+#		var grass_x = rng.randf_range(-chunk_size/2, chunk_size/2)
+#		var grass_z = rng.randf_range(-chunk_size/2, chunk_size/2)
+##		var tree_z = 0
+#
+#		var grass_y = noise.get_noise_3d(grass_x + x, 0, grass_z + z) * 40
+#
+#		if grass_y > 0:
+#
+#			var grass_inst = rock.instance()
+#			add_child(grass_inst)
+#
+#			var pos = Transform.IDENTITY
+#			pos = pos.translated(Vector3(grass_x, grass_y, grass_z))
+#
+##			tree_inst.transform = Transform.IDENTITY.rotated(Vector3(0.0,1.0, 0.0), .01).translated(Vector3(tree_x, tree_y, tree_z))
+#			grass_inst.rotation = Vector3(0, rng.randf_range(0.0,10.0), rng.randf_range(0.0,10.0))
+#			grass_inst.translation = Vector3(grass_x, grass_y, grass_z)
+##			grass_inst.global_transform = Transform.IDENTITY.translated(Vector3(grass_x, grass_y, grass_z))
 		
 		
 		
