@@ -15,6 +15,8 @@ var recoil_x
 var recoil_y
 var ergo
 
+var canShoot = true
+
 func _ready():
 	randomize()
 	body = Body.new(0, 0)
@@ -34,34 +36,43 @@ func _ready():
 	print("projectile: " + String(body.projectile))
 	print("damage: " + String(ammo.damage))
 	print("shotSpeed: " + String(ammo.shotSpeed))
+	print("rateOfFire: " + String(body.rateOfFire))
 	var bodyModel = bodyMod.instance()
 	$Body.add_child(bodyModel)
 	var gripModel = gripMod.instance()
 	$Grip.add_child(gripModel)
 	var stockModel = stockMod.instance()
 	$Stock.add_child(stockModel)
+	$Timer.set_wait_time(body.rateOfFire/1000)
 	
 
 func shoot(aimcast):
-	if(body.projectile):
-		var bullet = am.instance()
-		bullet.copy(ammo)
-		add_child(bullet)
-		bullet.transform = $Body/muzzle.global_transform
-		bullet.velocity = -bullet.transform.basis.z * bullet.shotSpeed
-		
-	else:
-		if aimcast.is_colliding():
-			var target = aimcast.get_collider()
-			var impact_pos = aimcast.get_collision_point()
-		
-			var bullet_impact = impact.instance()
+	if canShoot:
+		if(body.projectile):
+			var bullet = am.instance()
+			bullet.copy(ammo)
+			add_child(bullet)
+			bullet.transform = $Body/muzzle.global_transform
+			bullet.velocity = -bullet.transform.basis.z * bullet.shotSpeed
+			
+		else:
+			if aimcast.is_colliding():
+				var target = aimcast.get_collider()
+				var impact_pos = aimcast.get_collision_point()
+			
+				var bullet_impact = impact.instance()
 
-#			get_node("/root/MainLevel").add_child(bullet_impact)
-			target.add_child(bullet_impact)
-		
-#			bullet_impact.translation = impact_pos
-			bullet_impact.global_transform = bullet_impact.transform.translated(impact_pos)
-		
-			if target.is_in_group("Enemy"):
-				target.health -= ammo.damage
+#				get_node("/root/MainLevel").add_child(bullet_impact)
+				target.add_child(bullet_impact)
+			
+#				bullet_impact.translation = impact_pos
+				bullet_impact.global_transform = bullet_impact.transform.translated(impact_pos)
+			
+				if target.is_in_group("Enemy"):
+					target.health -= ammo.damage
+		canShoot = false
+		$Timer.start()
+
+
+func _on_Timer_timeout():
+	canShoot = true

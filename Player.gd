@@ -26,9 +26,13 @@ func _ready():
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	gun = gunScene.instance()
 	$Pivot/Hand.add_child(gun)
+	if gun.body.projectile:
+		$Pivot/Camera/CrossHair.texture = load("res://crosshair_proj.png")
 
 func _process(delta):
 	if Input.is_action_just_pressed("shoot"):
+		gun.shoot(aimcast)
+	elif Input.is_action_pressed("shoot") and gun.body.auto:
 		gun.shoot(aimcast)
 
 func _input(event):
@@ -42,7 +46,7 @@ func _input(event):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	if event.is_action_pressed("escape"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		
+
 func _physics_process(delta):
 	input_move = get_input_direction()*moveSpeed
 	
