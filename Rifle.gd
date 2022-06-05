@@ -25,11 +25,10 @@ func _ready():
 	var r = randi()%100
 	if r > 50:
 		hasSights = true
-	body = Body.new(0, 0)
-	grip = Grip.new(0, 0)
-	stock = Stock.new(0, 0)
-	ammo = Ammo.new(0, 0)
-	
+	body = Body.new(0)
+	grip = Grip.new(0)
+	stock = Stock.new(0)
+	ammo = Ammo.new(0)
 	
 	ergo = grip.ergo + stock.ergo
 	recoil_x = grip.recoil_x + stock.recoil_x
@@ -43,6 +42,7 @@ func _ready():
 	print("damage: " + String(ammo.damage))
 	print("shotSpeed: " + String(ammo.shotSpeed))
 	print("rateOfFire: " + String(body.rateOfFire))
+	
 	var bodyModel = bodyMod.instance()
 	$Body.add_child(bodyModel)
 	var gripModel = gripMod.instance()

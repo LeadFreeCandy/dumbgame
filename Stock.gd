@@ -24,7 +24,7 @@ var ergoArr : = [
 	[25,50]
 ]
 
-func _init(type, subtype):
+func _init(type):
 	recoil_x = rand_range(recX[type][0],recX[type][1])
 	recoil_y = rand_range(recY[type][0],recY[type][1])
 	ergo = rand_range(ergoArr[type][0],ergoArr[type][1]) 

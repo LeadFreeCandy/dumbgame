@@ -24,7 +24,7 @@ var rofType : = [
 	[0,40]
 ]
 
-func _init(type, subtype):
+func _init(type):
 	var r = randi()%100
 	if r < projType[type]:
 		projectile = true
