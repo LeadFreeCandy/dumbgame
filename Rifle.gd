@@ -42,6 +42,7 @@ func shoot(aimcast):
 	if canShoot:
 		if(body.stats.projectile):
 			var bullet = ammoScene.instance()
+			bullet.get_child(1).material_override = ammo.material
 			add_child(bullet)
 			bullet.stats = ammo
 			bullet.transform = $Body/muzzle.global_transform
