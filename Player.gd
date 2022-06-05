@@ -29,26 +29,25 @@ func _ready():
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	gun = gunScene.instance()
 	hand.add_child(gun)
-	if gun.body.projectile:
+	if gun.body.stats.projectile:
 		crosshair.texture = load("res://crosshair_proj.png")
 
 func _process(delta):
 	if Input.is_action_just_pressed("shoot"):
 		gun.shoot(aimcast)
-	elif Input.is_action_pressed("shoot") and gun.body.auto:
+	elif Input.is_action_pressed("shoot") and gun.body.stats.auto:
 		gun.shoot(aimcast)
 	
 	if Input.is_action_just_pressed("interact"):
-		print("interact")
 		if reach.is_colliding() and reach.get_collider().is_in_group("gun"):
-			print("interact gun")
 			hand.remove_child(gun)
 			reach.get_collider().get_parent().add_child(gun)
 			gun = reach.get_collider()
 			gun.get_parent().remove_child(gun)
 			hand.add_child(gun)
 			gun.global_transform = hand.global_transform
-			if gun.body.projectile:
+			ResourceSaver.save("res://ammoSave.tres", gun.ammo)
+			if gun.body.stats.projectile:
 				crosshair.texture = load("res://crosshair_proj.png")
 			else:
 				crosshair.texture = load("res://crosshair.png")

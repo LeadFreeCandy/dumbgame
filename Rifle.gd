@@ -1,16 +1,18 @@
 extends StaticBody
 
-onready var bodyMod = preload("res://GunParts/Body.tscn")
-onready var gripMod = preload("res://GunParts/Grip.tscn")
-onready var stockMod = preload("res://GunParts/Stock.tscn")
-onready var impact = preload("res://BulletImpact.tscn")
-onready var am = preload("res://GunParts/Ammo.tscn")
+onready var bodyScene = preload("res://GunParts/Body.tscn")
+onready var gripScene = preload("res://GunParts/Grip.tscn")
+onready var stockScene = preload("res://GunParts/Stock.tscn")
+onready var ammoScene = preload("res://GunParts/Ammo.tscn")
+
 onready var sight = preload("res://GunParts/Sight.tscn")
+onready var impact = preload("res://BulletImpact.tscn")
 
 var body
 var grip
 var stock
 var ammo
+
 var hasSights = false
 
 var recoil_x
@@ -20,49 +22,30 @@ var ergo
 var canShoot = true
 
 func _ready():
-	print("ready")
 	randomize()
 	var r = randi()%100
 	if r > 50:
 		hasSights = true
-	body = Body.new(0)
-	grip = Grip.new(0)
-	stock = Stock.new(0)
-	ammo = Ammo.new(0)
-	
-	ergo = grip.ergo + stock.ergo
-	recoil_x = grip.recoil_x + stock.recoil_x
-	recoil_y = grip.recoil_y + stock.recoil_y
-	
-	print("recoil_x: " + String(recoil_x))
-	print("recoil_y: " + String(recoil_y))
-	print("ergo: " + String(ergo))
-	print("auto: " + String(body.auto))
-	print("projectile: " + String(body.projectile))
-	print("damage: " + String(ammo.damage))
-	print("shotSpeed: " + String(ammo.shotSpeed))
-	print("rateOfFire: " + String(body.rateOfFire))
-	
-	var bodyModel = bodyMod.instance()
-	$Body.add_child(bodyModel)
-	var gripModel = gripMod.instance()
-	$Grip.add_child(gripModel)
-	var stockModel = stockMod.instance()
-	$Stock.add_child(stockModel)
+	body = bodyScene.instance()
+	$Body.add_child(body)
+	grip = gripScene.instance()
+	$Grip.add_child(grip)
+	stock = stockScene.instance()
+	$Stock.add_child(stock)
+	ammo = ammoStats.new(0)
 	if hasSights:
 		var sightModel = sight.instance()
 		$Sight.add_child(sightModel)
-	$Timer.set_wait_time(body.rateOfFire/1000)
-	
+	$Timer.set_wait_time(body.stats.rateOfFire/1000)
 
 func shoot(aimcast):
 	if canShoot:
-		if(body.projectile):
-			var bullet = am.instance()
-			bullet.copy(ammo)
+		if(body.stats.projectile):
+			var bullet = ammoScene.instance()
 			add_child(bullet)
+			bullet.stats = ammo
 			bullet.transform = $Body/muzzle.global_transform
-			bullet.velocity = -bullet.transform.basis.z * bullet.shotSpeed
+			bullet.velocity = -bullet.transform.basis.z * ammo.shotSpeed
 			
 		else:
 			if aimcast.is_colliding():
@@ -85,3 +68,4 @@ func shoot(aimcast):
 
 func _on_Timer_timeout():
 	canShoot = true
+

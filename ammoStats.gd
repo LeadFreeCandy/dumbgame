@@ -1,10 +1,8 @@
-extends Node
+extends Resource
+class_name ammoStats
 
-class_name Ammo
-
-var ammo
-var damage
-var shotSpeed
+var damage = 10.0
+var shotSpeed = 10.0
 
 var dmgType = [
 	[10, 50],
