@@ -6,7 +6,7 @@
 [sub_resource type="CubeMesh" id=1]
 size = Vector3( 0.05, 0.1, 0.2 )
 
-[node name="Stock" type="Spatial" groups=["gun"]]
+[node name="Stock" type="Spatial"]
 script = ExtResource( 1 )
 
 [node name="Model" type="MeshInstance" parent="."]
