@@ -1,6 +1,6 @@
 extends KinematicBody
 
-var damage : int = 5
+var health = 10
 
 var moveSpeed : float = 3.0
 var jumpForce : float = 3.0
@@ -100,10 +100,7 @@ func get_input_direction() -> Vector3:
 		
 		return vector
 
-#func _on_Hand_off_ads():
-#	crosshair.visible = true
-#
-#
-#
-#func _on_Hand_on_ads():
-#	crosshair.visible = false
+func take_damage(amount):
+	health -= amount
+	print(health)
+

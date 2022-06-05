@@ -26,13 +26,10 @@ func _on_Timer_timeout():
 
 
 func _on_Ammo_body_entered(body):
-	print("hit")
 	destroy()
 
 
 func _on_Ammo_area_entered(area):
-	print("hit area")
 	if area.get_parent().is_in_group("Enemy"):
-		print("hit enemy")
 		area.get_parent().health-=damage
 	destroy()

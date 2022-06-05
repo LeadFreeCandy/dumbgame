@@ -53,6 +53,3 @@ margin_top = -16.0
 margin_right = 32.0
 margin_bottom = 32.0
 texture = ExtResource( 3 )
-
-[connection signal="off_ads" from="Pivot/Hand" to="." method="_on_Hand_off_ads"]
-[connection signal="on_ads" from="Pivot/Hand" to="." method="_on_Hand_on_ads"]

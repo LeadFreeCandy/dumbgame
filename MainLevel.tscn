@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Enviroment/Environment_1.tscn" type="PackedScene" id=2]
@@ -6,10 +6,12 @@
 [ext_resource path="res://Enviroment/Mounting_2.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Enviroment/Terrain_1.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Enviroment/Terrain_2.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Enemy.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Dummy.tscn" type="PackedScene" id=7]
 [ext_resource path="res://untitled.glb" type="PackedScene" id=8]
 [ext_resource path="res://tree2.glb" type="PackedScene" id=9]
 [ext_resource path="res://MainLevel.gd" type="Script" id=10]
+[ext_resource path="res://Enviroment/Material.material" type="Material" id=11]
+[ext_resource path="res://Enemy.tscn" type="PackedScene" id=12]
 
 [sub_resource type="SpatialMaterial" id=3]
 albedo_color = Color( 0.435294, 0.431373, 0.411765, 1 )
@@ -20,6 +22,19 @@ size = Vector3( 30, 1, 30 )
 
 [sub_resource type="ConcavePolygonShape" id=2]
 data = PoolVector3Array( -15, 0.5, 15, 15, 0.5, 15, -15, -0.5, 15, 15, 0.5, 15, 15, -0.5, 15, -15, -0.5, 15, 15, 0.5, -15, -15, 0.5, -15, 15, -0.5, -15, -15, 0.5, -15, -15, -0.5, -15, 15, -0.5, -15, 15, 0.5, 15, 15, 0.5, -15, 15, -0.5, 15, 15, 0.5, -15, 15, -0.5, -15, 15, -0.5, 15, -15, 0.5, -15, -15, 0.5, 15, -15, -0.5, -15, -15, 0.5, 15, -15, -0.5, 15, -15, -0.5, -15, 15, 0.5, 15, -15, 0.5, 15, 15, 0.5, -15, -15, 0.5, 15, -15, 0.5, -15, 15, 0.5, -15, -15, -0.5, 15, 15, -0.5, 15, -15, -0.5, -15, 15, -0.5, 15, 15, -0.5, -15, -15, -0.5, -15 )
+
+[sub_resource type="CubeMesh" id=7]
+material = ExtResource( 11 )
+size = Vector3( 10, 1, 0.5 )
+
+[sub_resource type="ConcavePolygonShape" id=11]
+data = PoolVector3Array( -5, 0.5, 0.25, 5, 0.5, 0.25, -5, -0.5, 0.25, 5, 0.5, 0.25, 5, -0.5, 0.25, -5, -0.5, 0.25, 5, 0.5, -0.25, -5, 0.5, -0.25, 5, -0.5, -0.25, -5, 0.5, -0.25, -5, -0.5, -0.25, 5, -0.5, -0.25, 5, 0.5, 0.25, 5, 0.5, -0.25, 5, -0.5, 0.25, 5, 0.5, -0.25, 5, -0.5, -0.25, 5, -0.5, 0.25, -5, 0.5, -0.25, -5, 0.5, 0.25, -5, -0.5, -0.25, -5, 0.5, 0.25, -5, -0.5, 0.25, -5, -0.5, -0.25, 5, 0.5, 0.25, -5, 0.5, 0.25, 5, 0.5, -0.25, -5, 0.5, 0.25, -5, 0.5, -0.25, 5, 0.5, -0.25, -5, -0.5, 0.25, 5, -0.5, 0.25, -5, -0.5, -0.25, 5, -0.5, 0.25, 5, -0.5, -0.25, -5, -0.5, -0.25 )
+
+[sub_resource type="ConcavePolygonShape" id=12]
+data = PoolVector3Array( -5, 0.5, 0.25, 5, 0.5, 0.25, -5, -0.5, 0.25, 5, 0.5, 0.25, 5, -0.5, 0.25, -5, -0.5, 0.25, 5, 0.5, -0.25, -5, 0.5, -0.25, 5, -0.5, -0.25, -5, 0.5, -0.25, -5, -0.5, -0.25, 5, -0.5, -0.25, 5, 0.5, 0.25, 5, 0.5, -0.25, 5, -0.5, 0.25, 5, 0.5, -0.25, 5, -0.5, -0.25, 5, -0.5, 0.25, -5, 0.5, -0.25, -5, 0.5, 0.25, -5, -0.5, -0.25, -5, 0.5, 0.25, -5, -0.5, 0.25, -5, -0.5, -0.25, 5, 0.5, 0.25, -5, 0.5, 0.25, 5, 0.5, -0.25, -5, 0.5, 0.25, -5, 0.5, -0.25, 5, 0.5, -0.25, -5, -0.5, 0.25, 5, -0.5, 0.25, -5, -0.5, -0.25, 5, -0.5, 0.25, 5, -0.5, -0.25, -5, -0.5, -0.25 )
+
+[sub_resource type="ConcavePolygonShape" id=10]
+data = PoolVector3Array( -5, 0.5, 0.25, 5, 0.5, 0.25, -5, -0.5, 0.25, 5, 0.5, 0.25, 5, -0.5, 0.25, -5, -0.5, 0.25, 5, 0.5, -0.25, -5, 0.5, -0.25, 5, -0.5, -0.25, -5, 0.5, -0.25, -5, -0.5, -0.25, 5, -0.5, -0.25, 5, 0.5, 0.25, 5, 0.5, -0.25, 5, -0.5, 0.25, 5, 0.5, -0.25, 5, -0.5, -0.25, 5, -0.5, 0.25, -5, 0.5, -0.25, -5, 0.5, 0.25, -5, -0.5, -0.25, -5, 0.5, 0.25, -5, -0.5, 0.25, -5, -0.5, -0.25, 5, 0.5, 0.25, -5, 0.5, 0.25, 5, 0.5, -0.25, -5, 0.5, 0.25, -5, 0.5, -0.25, 5, 0.5, -0.25, -5, -0.5, 0.25, 5, -0.5, 0.25, -5, -0.5, -0.25, 5, -0.5, 0.25, 5, -0.5, -0.25, -5, -0.5, -0.25 )
 
 [sub_resource type="SpatialMaterial" id=6]
 albedo_color = Color( 0.486275, 0.439216, 0.439216, 1 )
@@ -97,6 +112,7 @@ material/0 = null
 [node name="StaticBody" type="StaticBody" parent="Enviroment/Walls/MeshInstance5"]
 
 [node name="CollisionShape" type="CollisionShape" parent="Enviroment/Walls/MeshInstance5/StaticBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 shape = SubResource( 2 )
 
 [node name="MeshInstance6" type="MeshInstance" parent="Enviroment/Walls"]
@@ -132,10 +148,40 @@ material/0 = null
 [node name="CollisionShape" type="CollisionShape" parent="Enviroment/Walls/MeshInstance4/StaticBody"]
 shape = SubResource( 2 )
 
+[node name="MeshInstance" type="MeshInstance" parent="Enviroment/Walls"]
+transform = Transform( 1, 0, 0, 0, 4.74791, 0, 0, 0, 1, -9.6108, 2.51044, -6.79544 )
+mesh = SubResource( 7 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="Enviroment/Walls/MeshInstance"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Enviroment/Walls/MeshInstance/StaticBody"]
+shape = SubResource( 11 )
+
+[node name="MeshInstance7" type="MeshInstance" parent="Enviroment/Walls"]
+transform = Transform( 1, 0, 0, 0, 4.74791, 0, 0, 0, 1, -9.6108, 2.51044, 13.9512 )
+mesh = SubResource( 7 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="Enviroment/Walls/MeshInstance7"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Enviroment/Walls/MeshInstance7/StaticBody"]
+shape = SubResource( 12 )
+
+[node name="MeshInstance8" type="MeshInstance" parent="Enviroment/Walls"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 4.74791, 0, 2.43994, 0, -1.06653e-07, -4.9765, 2.40054, 5.14196 )
+mesh = SubResource( 7 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="Enviroment/Walls/MeshInstance8"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Enviroment/Walls/MeshInstance8/StaticBody"]
+shape = SubResource( 10 )
+
 [node name="Ramp" type="Node" parent="Enviroment"]
 
 [node name="Ramp3" type="MeshInstance" parent="Enviroment/Ramp"]
-transform = Transform( 14.2535, 0, 0, 0, 2.15064, 0, 0, 0, 1, 0.0456805, 1.56283, 9.0856 )
+transform = Transform( -0.416631, 0, -0.999573, 0, 2.15064, 0, 14.2474, 0, -0.0292301, -4.95831, 2.67254, 15.9571 )
 mesh = SubResource( 4 )
 skeleton = NodePath("../../..")
 material/0 = null
@@ -158,50 +204,73 @@ shape = SubResource( 5 )
 
 [node name="Enemies" type="Node" parent="."]
 
-[node name="Enemy" parent="Enemies" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.767, 1.2, -3.675 )
+[node name="Dummies" type="Node" parent="Enemies"]
 
-[node name="Enemy2" parent="Enemies" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.767, 1.2, -2.93091 )
+[node name="Dummy" parent="Enemies/Dummies" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.427, 1, 5.335 )
 
-[node name="Enemy3" parent="Enemies" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.767, 1.2, -2.26701 )
+[node name="Dummy2" parent="Enemies/Dummies" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.427, 1, 4.614 )
 
-[node name="Enemy4" parent="Enemies" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.767, 1.2, -1.61293 )
+[node name="Dummy3" parent="Enemies/Dummies" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.427, 1, 3.83812 )
 
-[node name="Enemy5" parent="Enemies" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.767, 1.2, -1.01304 )
+[node name="Dummy4" parent="Enemies/Dummies" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.427, 1, 3.01089 )
 
-[node name="Enemy6" parent="Enemies" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.767, 1.2, -0.412465 )
+[node name="Dummy5" parent="Enemies/Dummies" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.427, 1, 2.30016 )
 
-[node name="Enemy7" parent="Enemies" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.767, 1.2, 0.233799 )
+[node name="Dummy6" parent="Enemies/Dummies" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.427, 1, 1.50085 )
 
-[node name="Enemy8" parent="Enemies" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.767, 1.2, 0.908735 )
+[node name="Dummy7" parent="Enemies/Dummies" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.427, 1, 0.742224 )
 
-[node name="Enemy9" parent="Enemies" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.767, 1.2, 1.59555 )
+[node name="Dummy8" parent="Enemies/Dummies" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.427, 1, -0.0589371 )
 
-[node name="Enemy10" parent="Enemies" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.767, 1.2, 2.20413 )
+[node name="Dummy9" parent="Enemies/Dummies" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.427, 1, -0.806581 )
 
-[node name="Enemy11" parent="Enemies" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.767, 1.2, 2.88169 )
+[node name="Dummy10" parent="Enemies/Dummies" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.427, 1, -1.76372 )
 
-[node name="Enemy12" parent="Enemies" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.767, 1.2, 3.54324 )
+[node name="Dummy11" parent="Enemies/Dummies" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.427, 1, -2.56464 )
 
-[node name="Enemy13" parent="Enemies" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.767, 1.2, 4.2286 )
+[node name="Dummy12" parent="Enemies/Dummies" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.427, 1, -3.56464 )
 
-[node name="Enemy14" parent="Enemies" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.767, 1.2, 4.88103 )
+[node name="Enemy" parent="Enemies" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.393, 1, -4.05834 )
 
-[node name="Enemy15" parent="Enemies" instance=ExtResource( 7 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.767, 1.2, 5.52839 )
+[node name="Enemy2" parent="Enemies" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.393, 1, -3.09907 )
+
+[node name="Enemy3" parent="Enemies" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.393, 1, -1.84783 )
+
+[node name="Enemy4" parent="Enemies" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.393, 1, -0.475701 )
+
+[node name="Enemy5" parent="Enemies" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.393, 1, 1.37281 )
+
+[node name="Enemy6" parent="Enemies" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.393, 1, 4.2622 )
+
+[node name="Enemy7" parent="Enemies" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.393, 1, 6.19769 )
+
+[node name="Enemy8" parent="Enemies" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.393, 1, 8.74004 )
+
+[node name="Enemy9" parent="Enemies" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.393, 1, 10.557 )
+
+[node name="Enemy10" parent="Enemies" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.393, 1, 11.9138 )
 
 [node name="untitled" parent="." instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.3248, 0.500001, -13.6717 )
