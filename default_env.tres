@@ -25,6 +25,7 @@ fog_height_curve = 0.629189
 auto_exposure_enabled = true
 ss_reflections_enabled = true
 ss_reflections_max_steps = 512
+ss_reflections_depth_tolerance = 0.8
 dof_blur_far_distance = 16.96
 dof_blur_far_amount = 0.06
 dof_blur_near_enabled = true

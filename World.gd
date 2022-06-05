@@ -1,8 +1,8 @@
 extends Spatial
 
 const chunk_size = 64
-const chunk_amount = 32
-
+const chunk_amount = 16
+const num_threads = 16
 
 
 var noise
@@ -10,7 +10,7 @@ var chunks = {}
 var unready_chunks = {}
 var current_chunk_pos
 
-var thread
+var threads = []
 var sem
 var mut
 
@@ -24,8 +24,10 @@ func _ready():
 	noise.lacunarity = 2
 	noise.period = 160
 	
-	thread = Thread.new()
-	thread.start(self, "_thread_function")
+	
+	for i in range(num_threads):
+		threads.append(Thread.new())
+		threads[i].start(self, "_thread_function")
 	
 	sem = Semaphore.new()
 	mut = Mutex.new()
@@ -34,7 +36,7 @@ func add_chunk(x, z):
 
 #	print('called add chunk')
 	var key = str(x) + "," + str(z)
-	if chunks.has(key):
+	if chunks.has(key) or unready_chunks.has(key):
 		return 
 		
 #	var key = str(x) + "," + str(z)
@@ -42,11 +44,19 @@ func add_chunk(x, z):
 #		return 
 	
 #	load_chunk([x, z])
-	
+#	print("waiting for lock")
+#	mut.lock()
+#	print("done waiting")
 	if current_chunk_pos == null:
+		
+		print("adding current chunk")
 		current_chunk_pos = [x,z]
 		
 		sem.post()
+
+		
+#	mut.unlock()
+	
 		
 		
 	
@@ -88,15 +98,22 @@ func _thread_function():
 	while true:
 		sem.wait()
 		
-		mut.lock()
+#		mut.lock()
 		var cur_pos = current_chunk_pos
-		mut.unlock()
-		
-		load_chunk(cur_pos)
-		
-		mut.lock()
 		current_chunk_pos = null
-		mut.unlock()
+#		mut.unlock()
+		
+		if cur_pos != null:
+			print("starting on chunk")
+			var key = str(cur_pos[0]) + "," + str(cur_pos[1])
+			mut.lock()
+			unready_chunks[key] = 1
+			mut.unlock()
+		
+			load_chunk(cur_pos)
+			
+#			mut.unlock()
+#			
 
 		
 func load_chunk(arr):
@@ -105,8 +122,10 @@ func load_chunk(arr):
 
 	print("creating chunk with x and z", x, z)
 	var chunk = Chunk.new(noise, x * chunk_size, z * chunk_size, chunk_size)
+	print("created 1")
 	chunk.translation = Vector3(x * chunk_size, 0, z * chunk_size)
 
+	print("created")
 	load_done(chunk)
 	
 #	thread.call_deferred('wait_to_finish')
@@ -116,13 +135,20 @@ func load_chunk(arr):
 	
 	
 func load_done(chunk):
-	add_child(chunk)
+	call_deferred("add_child", chunk)
+#	add_child(chunk)
 	var key = str(chunk.x/chunk_size) + "," + str(chunk.z/chunk_size)
+#	var unready_key = str(chunk.x) + "," + str(chunk.z)
+	print("attempting to lock")
+	
 	
 	mut.lock()
+
 	chunks[key] = chunk
+
 	unready_chunks.erase(key)
 	mut.unlock()
+
 #	thread.call_deferred('wait_to_finish')
 #	thread.wait_to_finish()
 	
