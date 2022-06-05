@@ -26,14 +26,12 @@ var rofType : = [
 
 func _init(type, subtype):
 	var r = randi()%100
-	print(r)
 	if r < projType[type]:
 		projectile = true
 	else:
 		projectile = false
 	
 	r = randi()%100
-	print(r)
 	if r < autoType[type]:
 		rateOfFire = rand_range(rofType[type][0],rofType[type][1])
 		auto = true

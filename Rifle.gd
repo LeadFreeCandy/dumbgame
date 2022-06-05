@@ -11,6 +11,7 @@ var body
 var grip
 var stock
 var ammo
+var hasSights = false
 
 var recoil_x
 var recoil_y
@@ -21,6 +22,9 @@ var canShoot = true
 func _ready():
 	print("ready")
 	randomize()
+	var r = randi()%100
+	if r > 50:
+		hasSights = true
 	body = Body.new(0, 0)
 	grip = Grip.new(0, 0)
 	stock = Stock.new(0, 0)
@@ -45,8 +49,9 @@ func _ready():
 	$Grip.add_child(gripModel)
 	var stockModel = stockMod.instance()
 	$Stock.add_child(stockModel)
-	var sightModel = sight.instance()
-	$Sight.add_child(sightModel)
+	if hasSights:
+		var sightModel = sight.instance()
+		$Sight.add_child(sightModel)
 	$Timer.set_wait_time(body.rateOfFire/1000)
 	
 
