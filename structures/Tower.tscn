@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://structures/TowerPiece.tscn" type="PackedScene" id=1]
+[ext_resource path="res://structures/Tower.gd" type="Script" id=2]
+[ext_resource path="res://structures/cone.tscn" type="PackedScene" id=3]
+
+[node name="Tower" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="cone" parent="." instance=ExtResource( 3 )]
+transform = Transform( 11, 0, 0, 0, 11, 0, 0, 0, 11, 0, 0, 0 )
+
+[node name="TowerPiece" parent="." instance=ExtResource( 1 )]

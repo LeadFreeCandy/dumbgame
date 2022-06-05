@@ -18,10 +18,16 @@ _global_script_classes=[ {
 "class": "GitAPI",
 "language": "NativeScript",
 "path": "res://addons/godot-git-plugin/git_api.gdns"
+}, {
+"base": "Spatial",
+"class": "Tower",
+"language": "GDScript",
+"path": "res://structures/Tower.gd"
 } ]
 _global_script_class_icons={
 "Chunk": "",
-"GitAPI": ""
+"GitAPI": "",
+"Tower": ""
 }
 
 [application]
@@ -94,4 +100,5 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+quality/filters/msaa=2
 environment/default_environment="res://default_env.tres"

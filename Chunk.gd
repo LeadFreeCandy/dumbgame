@@ -7,17 +7,21 @@ var x
 var z
 var chunk_size
 var should_remove = true
-var num_trees = 250 / 16
-var num_grass = 2000 / 16
+var num_trees = 250 /4000
+var num_grass = 2000 /4000
 var tree = preload("res://world_assets/tree.tscn")
 var grass = preload("res://world_assets/grass.tscn")
 var rock = preload("res://world_assets/rock.tscn")
+
+var rng = RandomNumberGenerator.new()
+
 
 func _init(noise, x, z, chunk_size):
 	self.noise = noise
 	self.x = x
 	self.z = z
 	self.chunk_size = chunk_size
+	rng.randomize()
 	generate_chunk()
 	generate_water()
 	
@@ -45,7 +49,7 @@ func generate_chunk():
 	for i in range(data_tool.get_vertex_count()):
 
 		var vertex = data_tool.get_vertex(i)
-		vertex.y = noise.get_noise_3d(vertex.x + x, vertex.y, vertex.z + z) * 40
+		vertex.y = noise.get_noise_3d(vertex.x + x, vertex.y, vertex.z + z) * 80
 		
 		
 		data_tool.set_vertex(i, vertex)
@@ -64,61 +68,69 @@ func generate_chunk():
 	mesh_instance.cast_shadow = GeometryInstance.SHADOW_CASTING_SETTING_OFF #todo check if correct
 	add_child(mesh_instance)
 	
-	var rng = RandomNumberGenerator.new()
-	rng.seed = hash("Godot")
+
+#	rng.seed = hash("Godot")
 	
-#	for i in range(num_trees):
-#		var tree_x = rng.randf_range(-chunk_size/2, chunk_size/2)
-#		var tree_z = rng.randf_range(-chunk_size/2, chunk_size/2)
-##		var tree_z = 0
-#
-#		var tree_y = noise.get_noise_3d(tree_x + x, 0, tree_z + z) * 40
-#
-#		if tree_y > 0:
-#
-#			var tree_inst = tree.instance()
-#			add_child(tree_inst)
-#
-#			var pos = Transform.IDENTITY
-#			pos = pos.translated(Vector3(tree_x, tree_y, tree_z))
-#
-##			tree_inst.transform = Transform.IDENTITY.rotated(Vector3(0.0,1.0, 0.0), .01).translated(Vector3(tree_x, tree_y, tree_z))
-#			tree_inst.rotation = Vector3(0.0, rng.randf_range(0.0,10.0), 0.0)
-#			tree_inst.translation = Vector3(tree_x, tree_y, tree_z)
-#
-#	for i in range(num_grass):
-#		var grass_x = rng.randf_range(-chunk_size/2, chunk_size/2)
-#		var grass_z = rng.randf_range(-chunk_size/2, chunk_size/2)
-##		var tree_z = 0
-#
-#		var grass_y = noise.get_noise_3d(grass_x + x, 0, grass_z + z) * 40
-#
-#		if grass_y > 0:
-#
-#			var grass_inst = grass.instance()
-#			add_child(grass_inst)
-#
+	var tower = preload("res://structures/Tower.tscn")
+	
+	if rng.randf() < .1 and noise.get_noise_3d(x, 0, z) > 0:
+		print(rng.randf())
+		var t = tower.instance()
+		t.translation = Vector3(0, noise.get_noise_3d(x, 0, z) * 80, 0)
+		add_child(t)
+	
+	for i in range(num_trees):
+		var tree_x = rng.randf_range(-chunk_size/2, chunk_size/2)
+		var tree_z = rng.randf_range(-chunk_size/2, chunk_size/2)
+#		var tree_z = 0
+
+		var tree_y = noise.get_noise_3d(tree_x + x, 0, tree_z + z) * 80
+
+		if tree_y > 0:
+
+			var tree_inst = tree.instance()
+			add_child(tree_inst)
+
+			var pos = Transform.IDENTITY
+			pos = pos.translated(Vector3(tree_x, tree_y, tree_z))
+
+#			tree_inst.transform = Transform.IDENTITY.rotated(Vector3(0.0,1.0, 0.0), .01).translated(Vector3(tree_x, tree_y, tree_z))
+			tree_inst.rotation = Vector3(0.0, rng.randf_range(0.0,10.0), 0.0)
+			tree_inst.translation = Vector3(tree_x, tree_y, tree_z)
+
+	for i in range(num_grass):
+		var grass_x = rng.randf_range(-chunk_size/2, chunk_size/2)
+		var grass_z = rng.randf_range(-chunk_size/2, chunk_size/2)
+#		var tree_z = 0
+
+		var grass_y = noise.get_noise_3d(grass_x + x, 0, grass_z + z) * 80
+
+		if grass_y > 0:
+
+			var grass_inst = grass.instance()
+			add_child(grass_inst)
+
+			grass_inst.global_transform = Transform.IDENTITY.translated(Vector3(grass_x, grass_y, grass_z))
+
+	for i in range(num_grass/2):
+		var grass_x = rng.randf_range(-chunk_size/2, chunk_size/2)
+		var grass_z = rng.randf_range(-chunk_size/2, chunk_size/2)
+#		var tree_z = 0
+
+		var grass_y = noise.get_noise_3d(grass_x + x, 0, grass_z + z) * 80
+
+		if grass_y > 0:
+
+			var grass_inst = rock.instance()
+			add_child(grass_inst)
+
+			var pos = Transform.IDENTITY
+			pos = pos.translated(Vector3(grass_x, grass_y, grass_z))
+
+#			tree_inst.transform = Transform.IDENTITY.rotated(Vector3(0.0,1.0, 0.0), .01).translated(Vector3(tree_x, tree_y, tree_z))
+			grass_inst.rotation = Vector3(0, rng.randf_range(0.0,10.0), rng.randf_range(0.0,10.0))
+			grass_inst.translation = Vector3(grass_x, grass_y, grass_z)
 #			grass_inst.global_transform = Transform.IDENTITY.translated(Vector3(grass_x, grass_y, grass_z))
-#
-#	for i in range(num_grass/2):
-#		var grass_x = rng.randf_range(-chunk_size/2, chunk_size/2)
-#		var grass_z = rng.randf_range(-chunk_size/2, chunk_size/2)
-##		var tree_z = 0
-#
-#		var grass_y = noise.get_noise_3d(grass_x + x, 0, grass_z + z) * 40
-#
-#		if grass_y > 0:
-#
-#			var grass_inst = rock.instance()
-#			add_child(grass_inst)
-#
-#			var pos = Transform.IDENTITY
-#			pos = pos.translated(Vector3(grass_x, grass_y, grass_z))
-#
-##			tree_inst.transform = Transform.IDENTITY.rotated(Vector3(0.0,1.0, 0.0), .01).translated(Vector3(tree_x, tree_y, tree_z))
-#			grass_inst.rotation = Vector3(0, rng.randf_range(0.0,10.0), rng.randf_range(0.0,10.0))
-#			grass_inst.translation = Vector3(grass_x, grass_y, grass_z)
-##			grass_inst.global_transform = Transform.IDENTITY.translated(Vector3(grass_x, grass_y, grass_z))
 		
 		
 		
@@ -129,7 +141,10 @@ func generate_water():
 #	plane_mesh.subdivide_depth = chunk_size * .5 #this can be changed to change low poly effect
 #	plane_mesh.subdivide_width = chunk_size * .5
 	
-	plane_mesh.material = preload("res://world_assets/water.tres")
+	plane_mesh.material = preload("res://world_assets/water2.tres")
 	var mesh_instance = MeshInstance.new()
 	mesh_instance.mesh = plane_mesh
+	mesh_instance.create_trimesh_collision()
+	
+	mesh_instance.translate(Vector3(0, -2, 0))
 	add_child(mesh_instance)
