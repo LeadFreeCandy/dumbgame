@@ -7,9 +7,9 @@ var x
 var z
 var chunk_size
 var should_remove = true
-var num_trees = 250 /4000
+var num_trees = 50
 var num_grass = 2000 /4000
-var tree = preload("res://world_assets/tree.tscn")
+var tree = preload("res://world_assets/grass_group.tres")
 var grass = preload("res://world_assets/grass.tscn")
 var rock = preload("res://world_assets/rock.tscn")
 
@@ -73,13 +73,32 @@ func generate_chunk():
 	
 	var tower = preload("res://structures/Tower.tscn")
 	
-	if rng.randf() < .1 and noise.get_noise_3d(x, 0, z) > 0:
-		print(rng.randf())
-		var t = tower.instance()
-		t.translation = Vector3(0, noise.get_noise_3d(x, 0, z) * 80, 0)
-		add_child(t)
+#	if rng.randf() < .1 and noise.get_noise_3d(x, 0, z) > 0:
+#		print(rng.randf())
+#		var t = tower.instance()
+#		t.translation = Vector3(0, noise.get_noise_3d(x, 0, z) * 80, 0)
+#		add_child(t)
+#	var trees = get_node("Trees")
+#	var trees = get_node("/root/")
+#	print(trees)
+#	var num_instances = trees.mualtimesh
+
+	print("creating multi")
+	var multimesh = MultiMesh.new()
+	multimesh.transform_format = MultiMesh.TRANSFORM_3D
+	multimesh.color_format = MultiMesh.COLOR_NONE
+	multimesh.custom_data_format = MultiMesh.CUSTOM_DATA_NONE
+	multimesh.instance_count = num_trees
+	multimesh.visible_instance_count = num_trees
+	multimesh.mesh = tree
 	
+
+#	print("num trees")
+#	print($Trees.multimesh.instance_count)
+#	print("num trees 2")
+
 	for i in range(num_trees):
+		print("modifying tree")
 		var tree_x = rng.randf_range(-chunk_size/2, chunk_size/2)
 		var tree_z = rng.randf_range(-chunk_size/2, chunk_size/2)
 #		var tree_z = 0
@@ -88,49 +107,70 @@ func generate_chunk():
 
 		if tree_y > 0:
 
-			var tree_inst = tree.instance()
-			add_child(tree_inst)
+
+#			add_child(tree_inst)
 
 			var pos = Transform.IDENTITY
-			pos = pos.translated(Vector3(tree_x, tree_y, tree_z))
-
+			pos = pos.rotated(Vector3(0,0,1), deg2rad(-90))
+			pos = pos.scaled(Vector3(.025,.05,.025))
+			pos = pos.rotated(Vector3(0.0, 1, 0.0), rng.randf_range(0.0,10.0))
+#			pos = pos.translated(Vector3(tree_x, tree_y, tree_z))
+			
+			pos.origin = Vector3(tree_x, tree_y, tree_z)
 #			tree_inst.transform = Transform.IDENTITY.rotated(Vector3(0.0,1.0, 0.0), .01).translated(Vector3(tree_x, tree_y, tree_z))
-			tree_inst.rotation = Vector3(0.0, rng.randf_range(0.0,10.0), 0.0)
-			tree_inst.translation = Vector3(tree_x, tree_y, tree_z)
-
-	for i in range(num_grass):
-		var grass_x = rng.randf_range(-chunk_size/2, chunk_size/2)
-		var grass_z = rng.randf_range(-chunk_size/2, chunk_size/2)
-#		var tree_z = 0
-
-		var grass_y = noise.get_noise_3d(grass_x + x, 0, grass_z + z) * 80
-
-		if grass_y > 0:
-
-			var grass_inst = grass.instance()
-			add_child(grass_inst)
-
-			grass_inst.global_transform = Transform.IDENTITY.translated(Vector3(grass_x, grass_y, grass_z))
-
-	for i in range(num_grass/2):
-		var grass_x = rng.randf_range(-chunk_size/2, chunk_size/2)
-		var grass_z = rng.randf_range(-chunk_size/2, chunk_size/2)
-#		var tree_z = 0
-
-		var grass_y = noise.get_noise_3d(grass_x + x, 0, grass_z + z) * 80
-
-		if grass_y > 0:
-
-			var grass_inst = rock.instance()
-			add_child(grass_inst)
-
+			
+#			pos.translation = Vector3(tree_x, tree_y, tree_z)
+			multimesh.set_instance_transform(i, pos)
+			
+		else:
 			var pos = Transform.IDENTITY
-			pos = pos.translated(Vector3(grass_x, grass_y, grass_z))
+			
+			pos = pos.translated(Vector3(0, -1000000, 0))
+		
 
 #			tree_inst.transform = Transform.IDENTITY.rotated(Vector3(0.0,1.0, 0.0), .01).translated(Vector3(tree_x, tree_y, tree_z))
-			grass_inst.rotation = Vector3(0, rng.randf_range(0.0,10.0), rng.randf_range(0.0,10.0))
-			grass_inst.translation = Vector3(grass_x, grass_y, grass_z)
+#			pos.rotation = Vector3(0.0, rng.randf_range(0.0,10.0), 0.0)
+#			pos.translation = Vector3(tree_x, tree_y, tree_z)
+			multimesh.set_instance_transform(i, pos)
+
+	var multi_inst = MultiMeshInstance.new()
+	multi_inst.set_multimesh(multimesh)
+	add_child(multi_inst)
+#	print("created trees")
+	
+#	for i in range(num_grass):
+#		var grass_x = rng.randf_range(-chunk_size/2, chunk_size/2)
+#		var grass_z = rng.randf_range(-chunk_size/2, chunk_size/2)
+##		var tree_z = 0
+#
+#		var grass_y = noise.get_noise_3d(grass_x + x, 0, grass_z + z) * 80
+#
+#		if grass_y > 0:
+#
+#			var grass_inst = grass.instance()
+#			add_child(grass_inst)
+#
 #			grass_inst.global_transform = Transform.IDENTITY.translated(Vector3(grass_x, grass_y, grass_z))
+#
+#	for i in range(num_grass/2):
+#		var grass_x = rng.randf_range(-chunk_size/2, chunk_size/2)
+#		var grass_z = rng.randf_range(-chunk_size/2, chunk_size/2)
+##		var tree_z = 0
+#
+#		var grass_y = noise.get_noise_3d(grass_x + x, 0, grass_z + z) * 80
+#
+#		if grass_y > 0:
+#
+#			var grass_inst = rock.instance()
+#			add_child(grass_inst)
+#
+#			var pos = Transform.IDENTITY
+#			pos = pos.translated(Vector3(grass_x, grass_y, grass_z))
+#
+##			tree_inst.transform = Transform.IDENTITY.rotated(Vector3(0.0,1.0, 0.0), .01).translated(Vector3(tree_x, tree_y, tree_z))
+#			grass_inst.rotation = Vector3(0, rng.randf_range(0.0,10.0), rng.randf_range(0.0,10.0))
+#			grass_inst.translation = Vector3(grass_x, grass_y, grass_z)
+##			grass_inst.global_transform = Transform.IDENTITY.translated(Vector3(grass_x, grass_y, grass_z))
 		
 		
 		
