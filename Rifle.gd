@@ -1,11 +1,11 @@
 extends StaticBody
 
-onready var bodyMod = preload("res://Body.tscn")
-onready var gripMod = preload("res://Grip.tscn")
-onready var stockMod = preload("res://Stock.tscn")
+onready var bodyMod = preload("res://GunParts/Body.tscn")
+onready var gripMod = preload("res://GunParts/Grip.tscn")
+onready var stockMod = preload("res://GunParts/Stock.tscn")
 onready var impact = preload("res://BulletImpact.tscn")
-onready var am = preload("res://Ammo.tscn")
-onready var sight = preload("res://Sight.tscn")
+onready var am = preload("res://GunParts/Ammo.tscn")
+onready var sight = preload("res://GunParts/Sight.tscn")
 
 var body
 var grip

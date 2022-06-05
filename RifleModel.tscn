@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Rifle.gd" type="Script" id=1]
-[ext_resource path="res://Body.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Stock.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Grip.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Sight.tscn" type="PackedScene" id=5]
+[ext_resource path="res://GunParts/Body.tscn" type="PackedScene" id=2]
+[ext_resource path="res://GunParts/Stock.tscn" type="PackedScene" id=3]
+[ext_resource path="res://GunParts/Grip.tscn" type="PackedScene" id=4]
+[ext_resource path="res://GunParts/Sight.tscn" type="PackedScene" id=5]
 
 [node name="Rifle" type="Spatial"]
 script = ExtResource( 1 )

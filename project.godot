@@ -12,12 +12,12 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "Ammo",
 "language": "GDScript",
-"path": "res://AmmoClass.gd"
+"path": "res://GunParts/AmmoClass.gd"
 }, {
 "base": "Spatial",
 "class": "Body",
 "language": "GDScript",
-"path": "res://Body.gd"
+"path": "res://GunParts/Body.gd"
 }, {
 "base": "",
 "class": "GitAPI",
@@ -27,12 +27,12 @@ _global_script_classes=[ {
 "base": "Spatial",
 "class": "Grip",
 "language": "GDScript",
-"path": "res://Grip.gd"
+"path": "res://GunParts/Grip.gd"
 }, {
 "base": "Spatial",
 "class": "Stock",
 "language": "GDScript",
-"path": "res://Stock.gd"
+"path": "res://GunParts/Stock.gd"
 } ]
 _global_script_class_icons={
 "Ammo": "",
