@@ -34,7 +34,7 @@ data = PoolVector3Array( 0, 1, 1, 1, -1, 1, -1, -1, 1, 0, 1, -1, -1, -1, -1, 1, 
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.707107, -0.353553, 0.612372, 0, 0.866025, 0.5, -0.707107, -0.353553, 0.612372, 0, 14.9223, 10.6518 )
-light_energy = 4.065
+light_energy = 1.669
 light_indirect_energy = 1.309
 light_bake_mode = 2
 shadow_enabled = true
