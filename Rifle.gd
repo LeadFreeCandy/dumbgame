@@ -52,9 +52,9 @@ func shoot(aimcast):
 			if aimcast.is_colliding():
 				var target = aimcast.get_collider()
 				var impact_pos = aimcast.get_collision_point()
-			
+				
 				var bullet_impact = impact.instance()
-
+				bullet_impact.get_child(0).material_override = ammo.material
 #				get_node("/root/MainLevel").add_child(bullet_impact)
 				target.add_child(bullet_impact)
 			
