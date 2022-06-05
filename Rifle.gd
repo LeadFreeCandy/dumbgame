@@ -1,10 +1,11 @@
-extends Spatial
+extends StaticBody
 
 onready var bodyMod = preload("res://Body.tscn")
 onready var gripMod = preload("res://Grip.tscn")
 onready var stockMod = preload("res://Stock.tscn")
 onready var impact = preload("res://BulletImpact.tscn")
 onready var am = preload("res://Ammo.tscn")
+onready var sight = preload("res://Sight.tscn")
 
 var body
 var grip
@@ -18,6 +19,7 @@ var ergo
 var canShoot = true
 
 func _ready():
+	print("ready")
 	randomize()
 	body = Body.new(0, 0)
 	grip = Grip.new(0, 0)
@@ -43,6 +45,8 @@ func _ready():
 	$Grip.add_child(gripModel)
 	var stockModel = stockMod.instance()
 	$Stock.add_child(stockModel)
+	var sightModel = sight.instance()
+	$Sight.add_child(sightModel)
 	$Timer.set_wait_time(body.rateOfFire/1000)
 	
 

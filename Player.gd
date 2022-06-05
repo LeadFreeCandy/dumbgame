@@ -19,21 +19,39 @@ var gun
 onready var pivot = $Pivot
 onready var aimcast = $Pivot/Camera/aimcast
 onready var bang = $Pivot/Bang
+onready var reach = $Pivot/Camera/reach
+onready var hand = $Pivot/Hand
 onready var crosshair = $Pivot/Camera/CrossHair
 onready var gunScene = preload("res://Rifle.tscn")
+
 
 func _ready():
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	gun = gunScene.instance()
-	$Pivot/Hand.add_child(gun)
+	hand.add_child(gun)
 	if gun.body.projectile:
-		$Pivot/Camera/CrossHair.texture = load("res://crosshair_proj.png")
+		crosshair.texture = load("res://crosshair_proj.png")
 
 func _process(delta):
 	if Input.is_action_just_pressed("shoot"):
 		gun.shoot(aimcast)
 	elif Input.is_action_pressed("shoot") and gun.body.auto:
 		gun.shoot(aimcast)
+	
+	if Input.is_action_just_pressed("interact"):
+		print("interact")
+		if reach.is_colliding() and reach.get_collider().is_in_group("gun"):
+			print("interact gun")
+			hand.remove_child(gun)
+			reach.get_collider().get_parent().add_child(gun)
+			gun = reach.get_collider()
+			gun.get_parent().remove_child(gun)
+			hand.add_child(gun)
+			gun.global_transform = hand.global_transform
+			if gun.body.projectile:
+				crosshair.texture = load("res://crosshair_proj.png")
+			else:
+				crosshair.texture = load("res://crosshair.png")
 
 func _input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
@@ -82,10 +100,10 @@ func get_input_direction() -> Vector3:
 		
 		return vector
 
-func _on_Hand_off_ads():
-	crosshair.visible = true
-
-
-
-func _on_Hand_on_ads():
-	crosshair.visible = false
+#func _on_Hand_off_ads():
+#	crosshair.visible = true
+#
+#
+#
+#func _on_Hand_on_ads():
+#	crosshair.visible = false

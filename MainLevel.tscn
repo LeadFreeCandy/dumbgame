@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Enviroment/Environment_1.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Enemy.tscn" type="PackedScene" id=7]
 [ext_resource path="res://untitled.glb" type="PackedScene" id=8]
 [ext_resource path="res://tree2.glb" type="PackedScene" id=9]
+[ext_resource path="res://MainLevel.gd" type="Script" id=10]
 
 [sub_resource type="SpatialMaterial" id=3]
 albedo_color = Color( 0.435294, 0.431373, 0.411765, 1 )
@@ -30,6 +31,7 @@ material = SubResource( 6 )
 data = PoolVector3Array( 0, 1, 1, 1, -1, 1, -1, -1, 1, 0, 1, -1, -1, -1, -1, 1, -1, -1, 0, 1, 1, 0, 1, -1, 1, -1, 1, 0, 1, -1, 1, -1, -1, 1, -1, 1, 0, 1, -1, 0, 1, 1, -1, -1, -1, 0, 1, 1, -1, -1, 1, -1, -1, -1, -1, -1, 1, 1, -1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1 )
 
 [node name="MainLevel" type="Node"]
+script = ExtResource( 10 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 1, 0, 0, 0, -0.131201, 0.991356, 0, -0.991356, -0.131201, 0, 19.826, 10.6518 )
@@ -206,3 +208,12 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.3248, 0.500001, -13.6717 )
 
 [node name="tree2" parent="." instance=ExtResource( 9 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.1963, 0.5, -12.3599 )
+
+[node name="gunSpawn" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3274, 0.749105, -6.32945 )
+
+[node name="gunSpawn2" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3274, 0.749105, -7.64951 )
+
+[node name="gunSpawn3" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3274, 0.749105, -9.0064 )

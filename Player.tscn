@@ -27,6 +27,8 @@ max_db = -1.0
 [node name="Hand" type="Spatial" parent="Pivot"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.167, -0.07, 0.534 )
 script = ExtResource( 5 )
+default_pos = Vector3( -0.167, -0.07, 0.534 )
+ads_pos = Vector3( 0, -0.067, 0.272 )
 
 [node name="Camera" type="Camera" parent="Pivot"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
@@ -35,6 +37,11 @@ current = true
 [node name="aimcast" type="RayCast" parent="Pivot/Camera"]
 enabled = true
 cast_to = Vector3( 0, 0, -1000 )
+
+[node name="reach" type="RayCast" parent="Pivot/Camera"]
+enabled = true
+cast_to = Vector3( 0, 0, -1.5 )
+collision_mask = 2
 
 [node name="CrossHair" type="TextureRect" parent="Pivot/Camera"]
 anchor_left = 0.5

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Rifle.gd" type="Script" id=1]
 [ext_resource path="res://Body.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Stock.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Grip.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Sight.tscn" type="PackedScene" id=5]
 
 [node name="Rifle" type="Spatial"]
 script = ExtResource( 1 )
@@ -25,3 +26,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0621888, -0.17522 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0223383, -0.331226 )
 
 [node name="Stock" parent="Stock" instance=ExtResource( 3 )]
+
+[node name="Sight" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0441266, -0.215509 )
+
+[node name="Spatial" parent="Sight" instance=ExtResource( 5 )]
