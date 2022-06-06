@@ -37,6 +37,7 @@ transform = Transform( 0.707107, -0.353553, 0.612372, 0, 0.866025, 0.5, -0.70710
 light_energy = 1.669
 light_indirect_energy = 1.309
 light_bake_mode = 2
+shadow_enabled = true
 directional_shadow_max_distance = 19.7
 
 [node name="Player" parent="." instance=ExtResource( 1 )]

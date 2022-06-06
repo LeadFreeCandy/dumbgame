@@ -7,7 +7,7 @@ var x
 var z
 var chunk_size
 var should_remove = true
-var num_trees = 50
+var num_trees = 100
 var num_grass = 2000 /4000
 var tree = preload("res://world_assets/grass_group.tres")
 var grass = preload("res://world_assets/grass.tscn")
@@ -106,32 +106,43 @@ func generate_chunk():
 		var tree_y = noise.get_noise_3d(tree_x + x, 0, tree_z + z) * 80
 
 		if tree_y > 0:
+			
+			var dist = .1
 
+			var dx = (tree_y - noise.get_noise_3d(tree_x + x + dist, 0, tree_z + z) * 80) / dist
+			var dy = (tree_y - noise.get_noise_3d(tree_x + x, 0, tree_z + z + dist) * 80) / dist
+			
+			var slope = pow(dx, 2) + pow(dy, 2)
+			
+			print(slope)
+			
+			if slope < .1:
+	#			add_child(tree_inst)
 
-#			add_child(tree_inst)
-
-			var pos = Transform.IDENTITY
-			pos = pos.rotated(Vector3(0,0,1), deg2rad(-90))
-			pos = pos.scaled(Vector3(.025,.05,.025))
-			pos = pos.rotated(Vector3(0.0, 1, 0.0), rng.randf_range(0.0,10.0))
-#			pos = pos.translated(Vector3(tree_x, tree_y, tree_z))
+				var pos = Transform.IDENTITY
+				pos = pos.rotated(Vector3(0,0,1), deg2rad(-90))
+				pos = pos.scaled(Vector3(.025,.05,.025))
+				pos = pos.rotated(Vector3(0.0, 1, 0.0), rng.randf_range(0.0,10.0))
+	#			pos = pos.translated(Vector3(tree_x, tree_y, tree_z))
+				
+				pos.origin = Vector3(tree_x, tree_y, tree_z)
+	#			tree_inst.transform = Transform.IDENTITY.rotated(Vector3(0.0,1.0, 0.0), .01).translated(Vector3(tree_x, tree_y, tree_z))
+				
+	#			pos.translation = Vector3(tree_x, tree_y, tree_z)
+				multimesh.set_instance_transform(i, pos)
+				
+				continue 
 			
-			pos.origin = Vector3(tree_x, tree_y, tree_z)
-#			tree_inst.transform = Transform.IDENTITY.rotated(Vector3(0.0,1.0, 0.0), .01).translated(Vector3(tree_x, tree_y, tree_z))
-			
-#			pos.translation = Vector3(tree_x, tree_y, tree_z)
-			multimesh.set_instance_transform(i, pos)
-			
-		else:
-			var pos = Transform.IDENTITY
-			
-			pos = pos.translated(Vector3(0, -1000000, 0))
+	
+		var pos = Transform.IDENTITY
 		
+		pos = pos.translated(Vector3(0, -1000000, 0))
+	
 
 #			tree_inst.transform = Transform.IDENTITY.rotated(Vector3(0.0,1.0, 0.0), .01).translated(Vector3(tree_x, tree_y, tree_z))
 #			pos.rotation = Vector3(0.0, rng.randf_range(0.0,10.0), 0.0)
 #			pos.translation = Vector3(tree_x, tree_y, tree_z)
-			multimesh.set_instance_transform(i, pos)
+		multimesh.set_instance_transform(i, pos)
 
 	var multi_inst = MultiMeshInstance.new()
 	multi_inst.set_multimesh(multimesh)
