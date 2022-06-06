@@ -25,12 +25,8 @@ onready var bang = $Pivot/Bang
 onready var reach = $Pivot/Camera/reach
 onready var hand = $Pivot/Hand
 onready var crosshair = $Pivot/Camera/CrossHair
-<<<<<<< HEAD
-onready var impact = preload("res://world_assets/BulletImpact.tscn")
-=======
 onready var gunScene = preload("res://Rifle.tscn")
 
->>>>>>> a447c815b5a35480808ae1ac6f8685fbd14858d4
 
 func _ready():
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

@@ -19,7 +19,6 @@ _global_script_classes=[ {
 "language": "NativeScript",
 "path": "res://addons/godot-git-plugin/git_api.gdns"
 }, {
-<<<<<<< HEAD
 "base": "Spatial",
 "class": "Tower",
 "language": "GDScript",
@@ -29,7 +28,6 @@ _global_script_class_icons={
 "Chunk": "",
 "GitAPI": "",
 "Tower": ""
-=======
 "base": "Resource",
 "class": "ammoStats",
 "language": "GDScript",
@@ -56,7 +54,6 @@ _global_script_class_icons={
 "bodyStats": "",
 "gripStats": "",
 "stockStats": ""
->>>>>>> a447c815b5a35480808ae1ac6f8685fbd14858d4
 }
 
 [application]

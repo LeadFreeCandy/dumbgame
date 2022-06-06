@@ -29,7 +29,6 @@ max_db = -1.0
 [node name="Hand" type="Spatial" parent="Pivot"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.167, -0.07, 0.534 )
 script = ExtResource( 5 )
-<<<<<<< HEAD
 default_pos = Vector3( -0.195, -0.185, 0.195 )
 ads_pos = Vector3( 0, -0.14, 0.141 )
 
@@ -41,14 +40,6 @@ visible = false
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
 environment = ExtResource( 6 )
 size = 35.0
-=======
-default_pos = Vector3( -0.167, -0.07, 0.534 )
-ads_pos = Vector3( 0, -0.067, 0.272 )
-
-[node name="Camera" type="Camera" parent="Pivot"]
-transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
-current = true
->>>>>>> a447c815b5a35480808ae1ac6f8685fbd14858d4
 
 [node name="aimcast" type="RayCast" parent="Pivot/Camera"]
 enabled = true
