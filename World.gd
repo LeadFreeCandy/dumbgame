@@ -1,11 +1,12 @@
 extends Spatial
 
+const thread = true
 const chunk_size = 64
 const chunk_amount = 16
 const num_threads = 16
 
 
-var noise
+var generator
 var chunks = {}
 var unready_chunks = {}
 var current_chunk_pos
@@ -16,14 +17,15 @@ var mut
 
 
 func _ready():
-	randomize()
-	noise = OpenSimplexNoise.new()
-	noise.seed = randi()
-	noise.octaves = 9
-	noise.persistence = .45
-	noise.lacunarity = 2
-	noise.period = 160
+#	randomize()
+#	noise = OpenSimplexNoise.new()
+#	noise.seed = randi()
+#	noise.octaves = 9
+#	noise.persistence = .45
+#	noise.lacunarity = 2
+#	noise.period = 160
 	
+	generator = MapGenerator.new()
 	
 	for i in range(num_threads):
 		threads.append(Thread.new())
@@ -31,6 +33,8 @@ func _ready():
 	
 	sem = Semaphore.new()
 	mut = Mutex.new()
+	
+	load_chunk([0,0])
 	
 func add_chunk(x, z):
 
@@ -43,56 +47,19 @@ func add_chunk(x, z):
 #	if chunks.has(key) or unready_chunks.has(key):
 #		return 
 	
-#	load_chunk([x, z])
-#	print("waiting for lock")
-#	mut.lock()
-#	print("done waiting")
-	if current_chunk_pos == null:
+	if not thread:
+		load_chunk([x, z])
 
-		print("adding current chunk")
-		current_chunk_pos = [x,z]
+	if thread:
+		if current_chunk_pos == null:
 
-		sem.post()
+
+			current_chunk_pos = [x,z]
+
+			sem.post()
 
 		
-#	mut.unlock()
-	
-		
-		
-	
-	
-#	load_chunk([thread, x, z])
-#	if first_thread:
-#		print("should happen once")
-#		thread.start(self, "load_chunk", [thread, x, z], 2)
-#		unready_chunks[key] = 1
-#		first_thread = false
-#
-#	elif not thread.is_alive():
-##		thread = Thread.new()
-##		thread.wait_to_finish()
-##		if thread.is_active():
-##			print("this should happen once")
-##			thread.wait_to_finish()
-##		thread = Thread.new()
-#		print("starting thread")
-#		thread.start(self, "load_chunk", [thread, x, z])
-#		print("started")
-#		unready_chunks[key] = 1
-#		print("set_unready")
 
-
-
-#	elif not thread.is_active():
-#		print("starting thread")
-#		thread.start(self, "load_chunk", [thread, x, z])
-#		print("started")
-#		unready_chunks[key] = 1
-#		print("set_unready")
-#	else:
-#		pass
-#		print("waiting")
-#	load_chunk([thread, x, z])
 
 func _thread_function():
 	while true:
@@ -104,7 +71,6 @@ func _thread_function():
 #		mut.unlock()
 		
 		if cur_pos != null:
-			print("starting on chunk")
 			var key = str(cur_pos[0]) + "," + str(cur_pos[1])
 			mut.lock()
 			unready_chunks[key] = 1
@@ -120,16 +86,15 @@ func load_chunk(arr):
 	var x = arr[0]
 	var z = arr[1]
 
-	print("creating chunk with x and z", x, z)
-	var chunk = Chunk.new(noise, x * chunk_size, z * chunk_size, chunk_size)
-	print("created 1")
+
+	var chunk = Chunk.new(generator, x * chunk_size, z * chunk_size, chunk_size)
+
 	chunk.translation = Vector3(x * chunk_size, 0, z * chunk_size)
 
-	print("created")
+
 	load_done(chunk)
 	
-#	thread.call_deferred('wait_to_finish')
-	print("finished")
+
 
 #	call_deferred("load_done", chunk, thread)
 	
@@ -139,7 +104,7 @@ func load_done(chunk):
 #	add_child(chunk)
 	var key = str(chunk.x/chunk_size) + "," + str(chunk.z/chunk_size)
 #	var unready_key = str(chunk.x) + "," + str(chunk.z)
-	print("attempting to lock")
+
 	
 	
 	mut.lock()
