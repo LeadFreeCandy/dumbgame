@@ -1,16 +1,18 @@
 extends StaticBody
 
-onready var bodyScene = preload("res://GunParts/Body.tscn")
-onready var gripScene = preload("res://GunParts/Grip.tscn")
-onready var stockScene = preload("res://GunParts/Stock.tscn")
 onready var ammoScene = preload("res://GunParts/Ammo.tscn")
 
 onready var sight = preload("res://GunParts/Sight.tscn")
 onready var impact = preload("res://BulletImpact.tscn")
 
-var body
-var grip
-var stock
+onready var body = $Body/Body
+onready var grip = $Grip/Grip
+onready var stock = $Stock/Stock
+
+onready var bodyMod = $Body/Body/Model
+onready var gripMod = $Grip/Grip/Model
+onready var stockMod = $Stock/Stock/Model
+
 var ammo
 
 var hasSights = false
@@ -26,12 +28,6 @@ func _ready():
 	var r = randi()%100
 	if r > 50:
 		hasSights = true
-	body = bodyScene.instance()
-	$Body.add_child(body)
-	grip = gripScene.instance()
-	$Grip.add_child(grip)
-	stock = stockScene.instance()
-	$Stock.add_child(stock)
 	ammo = ammoStats.new(0)
 	if hasSights:
 		var sightModel = sight.instance()

@@ -4,6 +4,9 @@ class_name gripStats
 var recoil_x : float
 var recoil_y : float
 var ergo : float
+var material
+var name : String
+var id = "Grip"
 
 var recX : = [
 	[25, 50],
@@ -27,5 +30,5 @@ func _init(type):
 	recoil_x = rand_range(recX[type][0],recX[type][1])
 	recoil_y = rand_range(recY[type][0],recY[type][1])
 	ergo = rand_range(ergoArr[type][0],ergoArr[type][1]) 
-	
+	name ="Grip" + String(randi()%1000)
 

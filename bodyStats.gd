@@ -5,6 +5,10 @@ var projectile = false
 var auto = false
 var rateOfFire = 20
 var type = 0
+var material
+var name : String
+var id = "Body"
+
 
 var projType = [
 	50,
@@ -37,4 +41,5 @@ func _init(t):
 		rateOfFire = rand_range(rofType[type][0],rofType[type][1])
 		auto = true
 	else:
-		auto = false
+		auto = false 
+	name = "Body" + String(randi()%1000)

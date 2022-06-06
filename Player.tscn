@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
+[ext_resource path="res://Inventory.gd" type="Script" id=2]
 [ext_resource path="res://crosshair.png" type="Texture" id=3]
 [ext_resource path="res://Bang.wav" type="AudioStream" id=4]
 [ext_resource path="res://Hand.gd" type="Script" id=5]
@@ -53,3 +54,19 @@ margin_top = -16.0
 margin_right = 32.0
 margin_bottom = 32.0
 texture = ExtResource( 3 )
+
+[node name="Inventory" type="Control" parent="."]
+visible = false
+script = ExtResource( 2 )
+
+[node name="ItemList" type="ItemList" parent="Inventory"]
+margin_right = 102.0
+margin_bottom = 185.0
+
+[node name="Gun" type="ItemList" parent="Inventory"]
+margin_left = 103.0
+margin_top = -2.0
+margin_right = 233.0
+margin_bottom = 183.0
+
+[connection signal="item_activated" from="Inventory/ItemList" to="." method="_on_ItemList_item_activated"]
