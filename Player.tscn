@@ -39,7 +39,7 @@ visible = false
 [node name="Camera" type="Camera" parent="Pivot"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
 environment = ExtResource( 6 )
-far = 8192.0
+size = 35.0
 
 [node name="aimcast" type="RayCast" parent="Pivot/Camera"]
 enabled = true

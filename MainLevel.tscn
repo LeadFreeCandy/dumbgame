@@ -1,9 +1,8 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://World.tscn" type="PackedScene" id=2]
 [ext_resource path="res://world_assets/tree.tscn" type="PackedScene" id=3]
-[ext_resource path="res://structures/Tower.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Enemy.tscn" type="PackedScene" id=7]
 
 [sub_resource type="SpatialMaterial" id=3]
@@ -46,7 +45,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5143, 0 )
 [node name="Enviroment" type="Node" parent="."]
 
 [node name="Floor" type="MeshInstance" parent="Enviroment"]
-use_in_baked_light = true
+generate_lightmap = false
 mesh = SubResource( 1 )
 skeleton = NodePath("../..")
 material/0 = SubResource( 8 )
@@ -74,7 +73,7 @@ shape = SubResource( 5 )
 
 [node name="Ramp2" type="MeshInstance" parent="Enviroment/Ramp"]
 transform = Transform( 14.2535, 0, 0, 0, 5.82193, 0, 0, 0, 1, 0.150971, 1.56283, 9.0856 )
-use_in_baked_light = true
+generate_lightmap = false
 mesh = SubResource( 4 )
 skeleton = NodePath("../../..")
 material/0 = null
@@ -134,7 +133,3 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.767, 1.2, 5.52839 )
 
 [node name="World" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -167.105, 0 )
-
-[node name="Tower" parent="." instance=ExtResource( 5 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 55.1324, 3.97937, -29.1793 )
-visible = false

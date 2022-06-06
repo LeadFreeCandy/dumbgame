@@ -1,8 +1,8 @@
 extends Spatial
 
-const chunk_size = 16
-const chunk_amount = 4
-const num_threads = 4
+const chunk_size = 64
+const chunk_amount = 16
+const num_threads = 16
 
 
 var noise
@@ -43,16 +43,16 @@ func add_chunk(x, z):
 #	if chunks.has(key) or unready_chunks.has(key):
 #		return 
 	
-	load_chunk([x, z])
+#	load_chunk([x, z])
 #	print("waiting for lock")
 #	mut.lock()
 #	print("done waiting")
-#	if current_chunk_pos == null:
-#
-#		print("adding current chunk")
-#		current_chunk_pos = [x,z]
-#
-#		sem.post()
+	if current_chunk_pos == null:
+
+		print("adding current chunk")
+		current_chunk_pos = [x,z]
+
+		sem.post()
 
 		
 #	mut.unlock()

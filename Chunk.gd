@@ -7,7 +7,7 @@ var x
 var z
 var chunk_size
 var should_remove = true
-var num_trees = 100
+var num_trees = 1000
 var num_grass = 2000 /4000
 var tree = preload("res://world_assets/grass_group.tres")
 var grass = preload("res://world_assets/grass.tscn")
@@ -73,11 +73,11 @@ func generate_chunk():
 	
 	var tower = preload("res://structures/Tower.tscn")
 	
-#	if rng.randf() < .1 and noise.get_noise_3d(x, 0, z) > 0:
-#		print(rng.randf())
-#		var t = tower.instance()
-#		t.translation = Vector3(0, noise.get_noise_3d(x, 0, z) * 80, 0)
-#		add_child(t)
+	if rng.randf() < .1 and noise.get_noise_3d(x, 0, z) > 0:
+		print(rng.randf())
+		var t = tower.instance()
+		t.translation = Vector3(0, noise.get_noise_3d(x, 0, z) * 80, 0)
+		add_child(t)
 #	var trees = get_node("Trees")
 #	var trees = get_node("/root/")
 #	print(trees)
@@ -98,7 +98,7 @@ func generate_chunk():
 #	print("num trees 2")
 
 	for i in range(num_trees):
-		print("modifying tree")
+#		print("modifying tree")
 		var tree_x = rng.randf_range(-chunk_size/2, chunk_size/2)
 		var tree_z = rng.randf_range(-chunk_size/2, chunk_size/2)
 #		var tree_z = 0
@@ -107,14 +107,14 @@ func generate_chunk():
 
 		if tree_y > 0:
 			
-			var dist = .1
+			var dist = .25
 
 			var dx = (tree_y - noise.get_noise_3d(tree_x + x + dist, 0, tree_z + z) * 80) / dist
 			var dy = (tree_y - noise.get_noise_3d(tree_x + x, 0, tree_z + z + dist) * 80) / dist
 			
 			var slope = pow(dx, 2) + pow(dy, 2)
 			
-			print(slope)
+#			print(slope)
 			
 			if slope < .1:
 	#			add_child(tree_inst)
