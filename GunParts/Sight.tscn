@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://GunParts/Sight.gd" type="Script" id=1]
+
+[sub_resource type="CubeMesh" id=1]
+size = Vector3( 0.05, 0.025, 0.01 )
+
+[sub_resource type="CubeMesh" id=3]
+size = Vector3( 0.05, 0.001, 0.01 )
+
+[sub_resource type="CubeMesh" id=2]
+size = Vector3( 0.001, 0.05, 0.01 )
+
+[node name="Spatial" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="Bottom" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0102991, 0 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="Top" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000262773, 0.0456749, -1.44839e-05 )
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="Left" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0244297, 0.021, 0 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Right" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0244867, 0.021, 0 )
+mesh = SubResource( 2 )
+material/0 = null

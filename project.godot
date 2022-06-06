@@ -19,6 +19,7 @@ _global_script_classes=[ {
 "language": "NativeScript",
 "path": "res://addons/godot-git-plugin/git_api.gdns"
 }, {
+<<<<<<< HEAD
 "base": "Spatial",
 "class": "Tower",
 "language": "GDScript",
@@ -28,6 +29,34 @@ _global_script_class_icons={
 "Chunk": "",
 "GitAPI": "",
 "Tower": ""
+=======
+"base": "Resource",
+"class": "ammoStats",
+"language": "GDScript",
+"path": "res://ammoStats.gd"
+}, {
+"base": "Resource",
+"class": "bodyStats",
+"language": "GDScript",
+"path": "res://bodyStats.gd"
+}, {
+"base": "Resource",
+"class": "gripStats",
+"language": "GDScript",
+"path": "res://gripStats.gd"
+}, {
+"base": "Resource",
+"class": "stockStats",
+"language": "GDScript",
+"path": "res://stockStats.gd"
+} ]
+_global_script_class_icons={
+"GitAPI": "",
+"ammoStats": "",
+"bodyStats": "",
+"gripStats": "",
+"stockStats": ""
+>>>>>>> a447c815b5a35480808ae1ac6f8685fbd14858d4
 }
 
 [application]
@@ -99,6 +128,14 @@ interact={
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":69,"unicode":0,"echo":false,"script":null)
  ]
 }
+<<<<<<< HEAD
+=======
+inventory={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":16777218,"unicode":0,"echo":false,"script":null)
+ ]
+}
+>>>>>>> a447c815b5a35480808ae1ac6f8685fbd14858d4
 
 [physics]
 
