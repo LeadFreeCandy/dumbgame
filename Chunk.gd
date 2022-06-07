@@ -104,8 +104,8 @@ func generate_multi_inst(mesh, quantity, slope_thresh, rotation = [Vector3(0,0,1
 func generate_chunk():
 	var plane_mesh = PlaneMesh.new()
 	plane_mesh.size = Vector2(chunk_size, chunk_size)
-	plane_mesh.subdivide_depth = chunk_size * 1 #this can be changed to change low poly effect
-	plane_mesh.subdivide_width = chunk_size * 1
+	plane_mesh.subdivide_depth = chunk_size * .5 #this can be changed to change low poly effect
+	plane_mesh.subdivide_width = chunk_size * .5
 	
 	plane_mesh.material = preload("res://world_assets/terrain_vertex.tres")
 	

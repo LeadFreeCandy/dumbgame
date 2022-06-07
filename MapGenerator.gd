@@ -1,8 +1,8 @@
 extends Node
 class_name MapGenerator
 
-const biome_sharpness = 10
-const biome_size_factor = 6
+const biome_sharpness = 3
+const biome_size_factor = 12
 
 var height_noise
 var height_multiplier
@@ -20,14 +20,14 @@ func _init():
 	
 	randomize()
 	
-	height_multiplier = 80
+	height_multiplier = 80 * 2
 	
 	height_noise = OpenSimplexNoise.new()
 	height_noise.seed = randi()
 	height_noise.octaves = 9
 	height_noise.persistence = .45
 	height_noise.lacunarity = 2
-	height_noise.period = 160 
+	height_noise.period = 160 * 4
 	
 	humidity_noise = OpenSimplexNoise.new()
 	humidity_noise.seed = randi()

@@ -120,7 +120,7 @@ func get_input_direction() -> Vector3:
 		var vector = transform.basis.xform(Vector3(x, 0, z)).normalized()
 		
 		if Input.is_action_pressed("sprint"):
-			vector *= 20
+			vector *= 200
 		if Input.is_action_pressed("ads"):
 			vector /= 2
 		
