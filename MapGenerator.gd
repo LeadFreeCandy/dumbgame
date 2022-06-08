@@ -9,6 +9,8 @@ var height_multiplier
 var humidity_noise
 var temp_noise
 
+var erosion
+
 #[Humidy, Temp]
 var biomes = {"desert": [-.6,.6], "rainforest": [.6,.6], "grass": [0,0], "snow": [0, -.6]}
 var colors = {"desert": Color(1, .5, 0), "rainforest": Color(0, 1, 0), "grass": Color(.5, 1, .5), "snow": Color(1, 1, 1)}
@@ -22,12 +24,17 @@ func _init():
 	
 	height_multiplier = 80 * 2
 	
-	height_noise = OpenSimplexNoise.new()
-	height_noise.seed = randi()
-	height_noise.octaves = 9
-	height_noise.persistence = .45
-	height_noise.lacunarity = 2
-	height_noise.period = 160 * 4
+#	height_noise = OpenSimplexNoise.new()
+#	height_noise.seed = randi()
+#	height_noise.octaves = 9
+#	height_noise.persistence = .45
+#	height_noise.lacunarity = 2
+#	height_noise.period = 160 * 4
+
+	erosion = preload("res://world_assets/erosion.gdns").new()
+	
+	erosion.setup(512, 200_000, 5.0, 0)
+#	erosion.erode(200000)
 	
 	humidity_noise = OpenSimplexNoise.new()
 	humidity_noise.seed = randi()
@@ -48,16 +55,19 @@ func get_height_raw(x, z):
 	return height_noise.get_noise_2d(x, z) * height_multiplier
 	
 func get_height(x, z):
-	var percents = get_biomes_at_pos(x, z)
-	var raw_height = get_height_raw(x, z)
-	var height = 0
+#	print(x, z)
+#	var percents = get_biomes_at_pos(x, z)
+#	var raw_height = get_height_raw(x, z)
+#	var height = 0
+#
+#	height += (raw_height/3 + 20 ) * percents.desert
+#	height += (raw_height/1.5) * percents.grass
+#	height += raw_height * percents.rainforest
+#	height += (raw_height + 60) * percents.snow
+
+	return erosion.get(int(x*4), int(z*4)) * 10
 	
-	height += (raw_height/3 + 20 ) * percents.desert
-	height += (raw_height/1.5) * percents.grass
-	height += raw_height * percents.rainforest
-	height += (raw_height + 60) * percents.snow
-	
-	return height
+#	return height
 	
 	
 func get_color(x, z):

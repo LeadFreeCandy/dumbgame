@@ -4,3 +4,5 @@
 
 [node name="World" type="Spatial"]
 script = ExtResource( 1 )
+
+[node name="Node" type="Node" parent="."]

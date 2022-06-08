@@ -1,0 +1,8 @@
+[gd_resource type="NativeScript" load_steps=2 format=2]
+
+[ext_resource path="res://world_assets/erosion.gdnlib" type="GDNativeLibrary" id=1]
+
+[resource]
+resource_name = "TiledErosionNoise"
+class_name = "TiledErosionNoise"
+library = ExtResource( 1 )

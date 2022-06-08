@@ -38,8 +38,8 @@ void vertex() {
 	
 //	vec3 color = NORMAL;
 	
-	float angle_mix_dirt = NORMAL[1] * 4.0 - 3.0;
-	float angle_mix_stone = NORMAL[1] * 8.0 - 4.5;
+	float angle_mix_dirt = NORMAL[1] * 8.0 - 6.0;
+	float angle_mix_stone = NORMAL[1] * 8.0 - 2.0;
 	
 	vec4 color = mix(dirt_color, grass_color, clamp(angle_mix_dirt, 0, 1));
 	color = mix(stone_color, color, clamp(angle_mix_stone, 0, 1));

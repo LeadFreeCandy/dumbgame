@@ -1,9 +1,9 @@
 extends Spatial
 
-const thread = true
-const chunk_size = 64
-const chunk_amount = 16
-const num_threads = 16
+const thread = false
+const chunk_size = 32
+const chunk_amount = 8
+const num_threads = 1
 
 
 var generator
@@ -14,6 +14,8 @@ var current_chunk_pos
 var threads = []
 var sem
 var mut
+
+var erosion
 
 
 func _ready():
@@ -27,14 +29,19 @@ func _ready():
 	
 	generator = MapGenerator.new()
 	
-	for i in range(num_threads):
-		threads.append(Thread.new())
-		threads[i].start(self, "_thread_function")
-	
+	if thread:
+		for i in range(num_threads):
+			threads.append(Thread.new())
+			threads[i].start(self, "_thread_function")
+		
 	sem = Semaphore.new()
 	mut = Mutex.new()
 	
-	load_chunk([0,0])
+#	erosion = ErosionNoise.new()
+#	erosion = preload("res://world_assets/erosion.gdns").new()
+	
+#	print("0,0: ", erosion.get(1.0,1.0))
+#	load_chunk([0,0])
 	
 func add_chunk(x, z):
 
@@ -52,8 +59,6 @@ func add_chunk(x, z):
 
 	if thread:
 		if current_chunk_pos == null:
-
-
 			current_chunk_pos = [x,z]
 
 			sem.post()
@@ -62,6 +67,8 @@ func add_chunk(x, z):
 
 
 func _thread_function():
+	var gen = MapGenerator.new()
+	
 	while true:
 		sem.wait()
 		
@@ -88,6 +95,7 @@ func load_chunk(arr):
 
 
 	var chunk = Chunk.new(generator, x * chunk_size, z * chunk_size, chunk_size)
+#	var chunk = Chunk.new(gen, x * chunk_size, z * chunk_size, chunk_size)
 
 	chunk.translation = Vector3(x * chunk_size, 0, z * chunk_size)
 

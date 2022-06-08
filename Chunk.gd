@@ -104,10 +104,15 @@ func generate_multi_inst(mesh, quantity, slope_thresh, rotation = [Vector3(0,0,1
 func generate_chunk():
 	var plane_mesh = PlaneMesh.new()
 	plane_mesh.size = Vector2(chunk_size, chunk_size)
-	plane_mesh.subdivide_depth = chunk_size * .5 #this can be changed to change low poly effect
-	plane_mesh.subdivide_width = chunk_size * .5
+	plane_mesh.subdivide_depth = chunk_size * 4 - 1  #this can be changed to change low poly effect
+	plane_mesh.subdivide_width = chunk_size * 4 - 1
 	
-	plane_mesh.material = preload("res://world_assets/terrain_vertex.tres")
+	
+	print("pmesh size", plane_mesh.size)
+	print("pmesh center", plane_mesh.center_offset)
+	print("x z ", x, " ", z)
+	
+	plane_mesh.material = preload("res://world_assets/terrain.tres")
 	
 	var surface_tool = SurfaceTool.new()
 	var data_tool = MeshDataTool.new()
@@ -120,9 +125,10 @@ func generate_chunk():
 	for i in range(data_tool.get_vertex_count()):
 
 
+	
 		var vertex = data_tool.get_vertex(i)
 		vertex.y = generator.get_height(vertex.x + x, vertex.z + z)
-		
+#		print(vertex.x, " ", vertex.z)
 		
 		data_tool.set_vertex(i, vertex)
 		
@@ -142,7 +148,7 @@ func generate_chunk():
 	mesh_instance = MeshInstance.new()
 	mesh_instance.mesh = surface_tool.commit()
 	mesh_instance.create_trimesh_collision()
-	mesh_instance.cast_shadow = GeometryInstance.SHADOW_CASTING_SETTING_OFF #todo check if correct
+	mesh_instance.cast_shadow = GeometryInstance.SHADOW_CASTING_SETTING_ON #todo check if correct
 	add_child(mesh_instance)
 	
 
@@ -150,11 +156,11 @@ func generate_chunk():
 	
 	var tower = preload("res://structures/Tower.tscn")
 	
-	if rng.randf() < .1 and generator.get_height(x, z) > 0:
-		print(rng.randf())
-		var t = tower.instance()
-		t.translation = Vector3(0, generator.get_height(x, z), 0)
-		add_child(t)
+#	if rng.randf() < .1 and generator.get_height(x, z) > 0:
+#		print(rng.randf())
+#		var t = tower.instance()
+#		t.translation = Vector3(0, generator.get_height(x, z), 0)
+#		add_child(t)
 #	var trees = get_node("Trees")
 #	var trees = get_node("/root/")
 #	print(trees)
