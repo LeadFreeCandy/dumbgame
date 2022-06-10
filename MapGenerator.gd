@@ -33,7 +33,7 @@ func _init():
 
 	erosion = preload("res://world_assets/erosion.gdns").new()
 	
-	erosion.setup(512, 200_000, 5.0, 0)
+	erosion.setup(512, 200_000, 1.0, 0)
 #	erosion.erode(200000)
 	
 	humidity_noise = OpenSimplexNoise.new()
@@ -65,7 +65,7 @@ func get_height(x, z):
 #	height += raw_height * percents.rainforest
 #	height += (raw_height + 60) * percents.snow
 
-	return erosion.get(int(x*4), int(z*4)) * 10
+	return erosion.get(int(x), int(z)) * 40
 	
 #	return height
 	

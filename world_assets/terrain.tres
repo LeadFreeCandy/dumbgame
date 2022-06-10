@@ -38,7 +38,7 @@ void vertex() {
 	
 //	vec3 color = NORMAL;
 	
-	float angle_mix_dirt = NORMAL[1] * 8.0 - 6.0;
+	float angle_mix_dirt = NORMAL[1] * 8.0 - 6.5;
 	float angle_mix_stone = NORMAL[1] * 8.0 - 2.0;
 	
 	vec4 color = mix(dirt_color, grass_color, clamp(angle_mix_dirt, 0, 1));
@@ -72,9 +72,9 @@ shader = SubResource( 1 )
 shader_param/albedo = Color( 1, 1, 1, 1 )
 shader_param/specular = 0.0
 shader_param/metallic = 0.0
-shader_param/roughness = 1.0
+shader_param/roughness = 0.832
 shader_param/point_size = 1.0
 shader_param/sand_color = Color( 0.670588, 0.694118, 0.447059, 1 )
 shader_param/grass_color = Color( 0.447059, 0.611765, 0.203922, 1 )
-shader_param/dirt_color = Color( 0.286275, 0.203922, 0.0823529, 1 )
+shader_param/dirt_color = Color( 0.266667, 0.262745, 0.262745, 1 )
 shader_param/stone_color = Color( 0.407843, 0.407843, 0.407843, 1 )

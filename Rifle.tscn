@@ -9,6 +9,7 @@
 extents = Vector3( 0.0755417, 0.138855, 0.375888 )
 
 [node name="Rifle" type="StaticBody" groups=["gun"]]
+visible = false
 collision_layer = 2
 collision_mask = 0
 script = ExtResource( 1 )

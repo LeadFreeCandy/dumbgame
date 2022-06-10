@@ -10,6 +10,7 @@
 [node name="Player" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 300, 0 )
 
-[node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.964989, 0.26229, 0, -0.26229, 0.964989, 0, 241.711, 0 )
-light_energy = 1.838
+[node name="DirectionalLight2" type="DirectionalLight" parent="."]
+transform = Transform( 0.246153, -0.25422, 0.935297, 0, 0.964989, 0.26229, -0.969231, -0.0645635, 0.237535, 0, 241.711, 0 )
+light_color = Color( 0.968627, 0.843137, 0.603922, 1 )
+light_energy = 4.356

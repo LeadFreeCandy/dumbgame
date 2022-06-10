@@ -1,9 +1,9 @@
 extends Spatial
 
-const thread = false
-const chunk_size = 32
-const chunk_amount = 8
-const num_threads = 1
+const thread = true
+const chunk_size = 64
+const chunk_amount = 6
+const num_threads = 16
 
 
 var generator
@@ -41,7 +41,7 @@ func _ready():
 #	erosion = preload("res://world_assets/erosion.gdns").new()
 	
 #	print("0,0: ", erosion.get(1.0,1.0))
-#	load_chunk([0,0])
+	load_chunk([0,0], generator)
 	
 func add_chunk(x, z):
 
@@ -54,8 +54,8 @@ func add_chunk(x, z):
 #	if chunks.has(key) or unready_chunks.has(key):
 #		return 
 	
-	if not thread:
-		load_chunk([x, z])
+#	if not thread:
+#		load_chunk([x, z])
 
 	if thread:
 		if current_chunk_pos == null:
@@ -83,19 +83,19 @@ func _thread_function():
 			unready_chunks[key] = 1
 			mut.unlock()
 		
-			load_chunk(cur_pos)
+			load_chunk(cur_pos, gen)
 			
 #			mut.unlock()
 #			
 
 		
-func load_chunk(arr):
+func load_chunk(arr, gen):
 	var x = arr[0]
 	var z = arr[1]
 
 
-	var chunk = Chunk.new(generator, x * chunk_size, z * chunk_size, chunk_size)
-#	var chunk = Chunk.new(gen, x * chunk_size, z * chunk_size, chunk_size)
+#	var chunk = Chunk.new(generator, x * chunk_size, z * chunk_size, chunk_size)
+	var chunk = Chunk.new(gen, x * chunk_size, z * chunk_size, chunk_size)
 
 	chunk.translation = Vector3(x * chunk_size, 0, z * chunk_size)
 
