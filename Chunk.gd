@@ -108,9 +108,6 @@ func generate_chunk():
 	plane_mesh.subdivide_width = chunk_size * 1 - 1
 	
 	
-	print("pmesh size", plane_mesh.size)
-	print("pmesh center", plane_mesh.center_offset)
-	print("x z ", x, " ", z)
 	 
 	plane_mesh.material = preload("res://world_assets/terrain.tres")
 	

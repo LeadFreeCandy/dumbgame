@@ -2,7 +2,7 @@ extends Spatial
 
 const thread = true
 const chunk_size = 64
-const chunk_amount = 6
+const chunk_amount = 0
 const num_threads = 16
 
 
